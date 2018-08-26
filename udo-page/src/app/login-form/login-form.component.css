@@ -71,20 +71,21 @@
 
 .select .arr {
     background: #fff;
-    bottom: 5px;
+    bottom: 1px;
     position: absolute;
     right: 1px;
-    top: 5px;
+    top: 1px;
     width: 50px;
     pointer-events: none;
     margin-top: 5px;
     margin-bottom: 15px;
+    border-radius: 7px;
 }
 .select .arr:before {
     content: '';
     position: absolute;
     top: 50%;
-    right: 24px;
+    right: 9px;
     margin-top: -5px;
     pointer-events: none;
     border-top: 10px solid gray;
@@ -95,7 +96,7 @@
     content: '';
     position: absolute;
     top: 50%;
-    right: 28px;
+    right: 13px;
     margin-top: -5px;
     pointer-events: none;
     border-top: 6px solid #fff;
