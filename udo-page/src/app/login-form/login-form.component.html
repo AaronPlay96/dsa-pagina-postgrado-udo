@@ -1,19 +1,16 @@
 <form>
   <div class = "login">
     <img src = "logo_udo.png" class = "logo">
-    <label>Usuario</label>
-    <input type = "text" name = "" placeholder="Ingrese su usuario">
-    <label>Clave</label>
-    <input type = "text" name = "" placeholder="Ingrese su clave">
-    <label>Tipo de usuario</label>
     
-    <!--<div class="dropdown">
-      <select>
-        <option value="Estudiante">Estudiante</option>
-        <option value="Profesor">Profesor</option>
-        <option value="Admin">Administrador</option>
-      </select>
-    </div>-->
+    <label>Usuario</label>
+    <input #user (keyup.enter)="0" (blur)="0" 
+    type = "text" name = "" placeholder="Ingrese su usuario">
+    
+    <label>Clave</label>
+    <input #psw (keyup.enter)="0" (blur)="0;"
+    type = "text" name = "" placeholder="Ingrese su clave">
+    
+    <label>Tipo de usuario</label>
     <div class="select">
       <span class="arr"></span>
       <select>
@@ -23,7 +20,9 @@
       </select>    
     </div>
 
-    <input type = "submit" name = "" value = "ingresar">
+    <input (click)="iniciarSesion(user.value, psw.value)" 
+    type = "submit" name = "" value = "Ingresar">
+    
     <p class="olvideClave">Olvide mi clave</p>
   </div>
 </form>
