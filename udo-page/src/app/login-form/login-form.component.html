@@ -1,10 +1,19 @@
 <form>
   <div class = "login">
     <img src = "logo_udo.png" class = "logo">
-    <p>Usuario</p>
+    <label>Usuario</label>
     <input type = "text" name = "" placeholder="Ingrese su usuario">
-    <p>Clave</p>
+    <label>Clave</label>
     <input type = "text" name = "" placeholder="Ingrese su clave">
+    <label>Tipo de usuario</label>
+    <div class="dropdown">
+      <select>
+        <option value="Estudiante">Estudiante</option>
+        <option value="Profesor">Profesor</option>
+        <option value="Admin">Administrador</option>
+      </select>
+    </div>
     <input type = "submit" name = "" value = "ingresar">
+    <p class="olvideClave">Olvide mi clave</p>
   </div>
 </form>

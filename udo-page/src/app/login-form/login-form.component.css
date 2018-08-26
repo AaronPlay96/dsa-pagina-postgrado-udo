@@ -21,7 +21,7 @@
     left: calc(50% - 50px);
 }
 
-.login p {
+.login label {
     margin: 0;
     padding: 0;
     font-family: Impact;
@@ -55,4 +55,23 @@
 .login input[type="submit"]:hover{
     cursor: pointer;
     background: rgb(56, 56, 56);
+}
+
+.olvideClave{
+    cursor: pointer;
+    font-size: 20px;
+    font-family: Impact;
+    width: 50%;
+}
+
+.olvideClave:hover{
+    text-decoration: underline;
+    color: rgb(56, 56, 56);
+}
+
+select{
+    font-size: 12px;
+    font-family: Arial;
+    margin-bottom: 15px;
+    margin-top: 5px;
 }
