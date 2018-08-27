@@ -13,11 +13,11 @@
     <label>Tipo de usuario</label>
     <div class="select">
       <span class="arr"></span>
-      <select>
-        <option>Profesor</option>
-        <option>Estudiante</option>
-        <option>Administrador</option>
-      </select>    
+      <select [(ngModel)]="selectedOption" name="first">
+          <option *ngFor="let o of options">
+            {{o.name}}
+          </option>
+       </select>    
     </div>
 
     <input (click)="iniciarSesion(user.value, psw.value)" 

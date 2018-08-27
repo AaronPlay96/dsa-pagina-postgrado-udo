@@ -5,10 +5,17 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
+
 export class LoginFormComponent implements OnInit {
   public user = ' ';
   public psw = ' ';
   constructor() { }
+  selectedOption: string;
+  options = [
+    { name: 'Estudiante', value: 1 },
+    { name: 'Profesor', value: 2 },
+    { name: 'Administrador', value: 3 }
+  ];
 
   ngOnInit() {
   }
@@ -19,8 +26,7 @@ export class LoginFormComponent implements OnInit {
     if (clave) {
       this.psw = clave;
     }
-    console.log(this.user);
-    console.log(this.psw);
+    console.log(this.selectedOption);
   }
 
 }
