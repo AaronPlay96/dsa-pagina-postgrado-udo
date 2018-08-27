@@ -33,7 +33,7 @@
     margin-bottom: 20px;
 }
 
-.login input[type="text"], input[type="clave"]{
+.login input[type="text"], input[type="password"]{
     border: none;
     border-bottom: 1px solid grey;
     background: transparent;
