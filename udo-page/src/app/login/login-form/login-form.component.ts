@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login-form',
@@ -9,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class LoginFormComponent implements OnInit {
   public user = ' ';
   public psw = ' ';
-  constructor() { }
+  constructor(private router: Router) { }
   selectedOption: string;
   options = [
     { name: 'Estudiante', value: 1 },
@@ -27,6 +29,12 @@ export class LoginFormComponent implements OnInit {
       this.psw = clave;
     }
     console.log(this.selectedOption);
+    if(this.selectedOption === 'Estudiante'){
+      this.router.navigate(['/student']);
+    }else if(this.selectedOption === 'Profesor'){
+      this.router.navigate(['/profesor']);
+    }else{
+      this.router.navigate(['/admin']);
+    }
   }
-
 }
