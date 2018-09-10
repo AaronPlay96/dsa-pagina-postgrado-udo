@@ -6,10 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profesor-view.component.css']
 })
 export class ProfesorViewComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit() {
   }
-
 }

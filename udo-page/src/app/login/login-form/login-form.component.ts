@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 export class LoginFormComponent implements OnInit {
   public user = ' ';
   public psw = ' ';
-  constructor(private router: Router) { }
   selectedOption: string;
+  constructor(private router: Router) { }
   options = [
     { name: 'Estudiante', value: 1 },
     { name: 'Profesor', value: 2 },
@@ -28,12 +28,14 @@ export class LoginFormComponent implements OnInit {
     if (clave) {
       this.psw = clave;
     }
+    console.log(this.user);
+    console.log(this.psw);
     console.log(this.selectedOption);
-    if(this.selectedOption === 'Estudiante'){
+    if (this.selectedOption === 'Estudiante') {
       this.router.navigate(['/student']);
-    }else if(this.selectedOption === 'Profesor'){
+    } else if (this.selectedOption === 'Profesor') {
       this.router.navigate(['/profesor']);
-    }else{
+    } else {
       this.router.navigate(['/admin']);
     }
   }
