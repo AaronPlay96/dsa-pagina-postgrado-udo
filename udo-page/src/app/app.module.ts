@@ -14,6 +14,11 @@ import { AdminViewComponent } from './admin-view/admin-view.component';
 import { HomeComponent } from './profesor-view/home/home.component';
 import { NotasComponent } from './profesor-view/notas/notas.component';
 import { AjustesComponent } from './profesor-view/ajustes/ajustes.component';
+import { HomeComponent_admin } from './admin-view/home/home.component';
+import { RegistroComponent} from './admin-view/registro/registro.component';
+import { AjustesPostComponent } from './admin-view/ajustes-post/ajustes-post.component';
+import { AperturaComponent } from './admin-view/apertura/apertura.component';
+import { CapturaComponent} from './admin-view/captura/captura.component';
 
 
 const appRoutes: Routes = [
@@ -28,7 +33,16 @@ const appRoutes: Routes = [
       { path: 'ajustes', component: AjustesComponent },
     ]
   },
-  { path: 'admin', component: AdminViewComponent}
+  { path: 'admin', component: AdminViewComponent,
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full'},
+      { path: 'home', component: HomeComponent_admin },
+      { path: 'registro', component: RegistroComponent },
+      { path: 'ajustes_post', component: AjustesPostComponent },
+      { path: 'apertura', component: AperturaComponent },
+      { path: 'captura', component: CapturaComponent }
+    ]
+  }
 ];
 
 @NgModule({
@@ -43,7 +57,12 @@ const appRoutes: Routes = [
     AdminViewComponent,
     HomeComponent,
     NotasComponent,
-    AjustesComponent
+    AjustesComponent,
+    HomeComponent_admin,
+    RegistroComponent,
+    AjustesPostComponent,
+    AperturaComponent,
+    CapturaComponent
   ],
   imports: [
     RouterModule.forRoot(
