@@ -21,7 +21,7 @@ admin_api = Blueprint('admin', __name__, url_prefix='/admin')
 
 
 @admin_api.route('/register', methods=['POST'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST)
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def register():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}),
@@ -31,7 +31,7 @@ def register():
 
 
 @admin_api.route('/postgrado', methods=['POST'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST)
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def postgrado():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}),
@@ -43,7 +43,7 @@ def postgrado():
 
 
 @admin_api.route('/cohorte', methods=['POST'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST)
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def cohorte():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}),
@@ -55,7 +55,7 @@ def cohorte():
 
 
 @admin_api.route('/estudiantes', methods=['POST'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST)
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def estudiantes():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}),
@@ -71,7 +71,7 @@ def estudiantes():
 
 
 @admin_api.route('/materias', methods=['POST'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST)
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def materias():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}),
@@ -88,7 +88,7 @@ def materias():
 
 
 @admin_api.route('/notas', methods=['POST'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST)
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def notas():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}),
@@ -105,7 +105,7 @@ def notas():
 
 
 @admin_api.route('/control', methods=['POST'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST)
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def control():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}),
@@ -116,7 +116,7 @@ def control():
 
 
 @admin_api.route('/cohorte', methods=['GET'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST)
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['GET'],headers=['Content-Type'])
 def obtener_estudiantes():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}),
@@ -125,7 +125,7 @@ def obtener_estudiantes():
 
 
 @admin_api.route('/cohorte_post', methods=['GET'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST)
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['GET'],headers=['Content-Type'])
 def obtener_postgrados():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}),
@@ -134,7 +134,7 @@ def obtener_postgrados():
 
 
 @admin_api.route('/control', methods=['GET'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST)
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['GET'],headers=['Content-Type'])
 def obtener_control_materias():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"})
@@ -144,8 +144,8 @@ def obtener_control_materias():
                             "id_cohorte": a[0].id_cohorte,
                             "materia": a[0].id_materia,
                             "id_profesor": a[0].id_profesor,
-                            "fecha_inicio": json.dumps(a[0].fecha_inicio, indent=4, sort_keys=True, default=str),
-                            "fecha_fin": json.dumps(a[0].fecha_fin, indent=4, sort_keys=True, default=str),
+                            "fecha_inicio": str(a[0].fecha_inicio),#json.dumps(a[0].fecha_inicio, indent=4, sort_keys=True, default=str),
+                            "fecha_fin":str(a[0].fecha_inicio), #json.dumps(a[0].fecha_fin, indent=4, sort_keys=True, default=str),
                             "captura": a[0].captura,
                             "id_postgrado": a[1].id_postgrado,
                             "year": a[1].year,

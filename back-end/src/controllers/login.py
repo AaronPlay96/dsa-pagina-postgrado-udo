@@ -7,22 +7,25 @@ from src.models import usermodel
 from src.crossdomain import crossdomain
 from src import config
 
-log_in = Blueprint('login', __name__,url_prefix='/login')
+log_in = Blueprint('login', __name__, url_prefix='/login')
 
 
-@log_in.route('/auth', methods=['POST'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST)
+@log_in.route('/auth', methods=['POST','OPTIONS'])
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'], headers=['Content-Type'])
 def login():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}), 400
 
     username = request.json.get('username', None)
     password = request.json.get('password', None)
+    tipo = request.json.get('type', None)
 
     if not username:
         return jsonify({"msg": "Missing username parameter"}), 400
     if not password:
         return jsonify({"msg": "Missing password parameter"}), 400
+    if not tipo:
+        return jsonify({"msg": "Missing type parameter"}), 400
     data = request.get_json()
 
     user = usermodel.UserModel.get_user_by_email(data.get('username'))
@@ -32,6 +35,9 @@ def login():
 
     if not user.check_hash(data.get('password')):
         return 'datos invalidos'
+
+    if not usermodel.UserModel.verificar_tipo(usermodel.UserModel,tipo,username,password):
+        return "usted no tiene acceso al sistema como "
 
     # Identity can be any data that is json serializable
     access_token = create_access_token(identity=username)

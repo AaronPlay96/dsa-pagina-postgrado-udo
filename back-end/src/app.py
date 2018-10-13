@@ -22,8 +22,6 @@ def create_app(env_name):
 
     from .controllers.login import log_in as login_blueprint
     app.register_blueprint(login_blueprint)
-    origins = app_config.get('CORS_ORIGIN_WHITELIST', '*')
-    #cors.init_app(app, origins=origins)
 
     # register blueprints
 

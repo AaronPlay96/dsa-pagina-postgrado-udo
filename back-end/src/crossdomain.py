@@ -3,7 +3,7 @@ from flask import make_response, request, current_app
 from functools import update_wrapper
 
 
-def crossdomain(origin=None, methods=None, headers=None,
+def crossdomain(origin, methods, headers,
                 max_age=21600, attach_to_all=True,
                 automatic_options=True):
     if methods is not None:
@@ -34,7 +34,7 @@ def crossdomain(origin=None, methods=None, headers=None,
             h = resp.headers
 
             h['Access-Control-Allow-Origin'] = origin
-            h['Access-Control-Allow-Methods'] = get_methods()
+            h['Access-Control-Allow-Methods'] = methods
             h['Access-Control-Max-Age'] = str(max_age)
             if headers is not None:
                 h['Access-Control-Allow-Headers'] = headers

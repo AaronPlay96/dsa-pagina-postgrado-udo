@@ -56,9 +56,14 @@ class UserModel(db.Model):
         db.session.commit()
         return "usuario registrado"
 
+    def verificar_tipo(self,tipo,user,psw):
+        s = UserModel.query.filter_by(id_tipo=tipo,usuario=user).first()
+        return s
+
     def serialize(self):
         return {
             "cedula": self.cedula,
             "nombre": self.nombre,
-            "apellido": self.apellido
+            "apellido": self.apellido,
+            "id_tipo":self.id_tipo
         }

@@ -11,19 +11,19 @@ class Development(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     JWT_SECRET_KEY = 'hola123'
     CORS_HEADERS = 'Content-Type'
-    CORS_ORIGIN_WHITELIST = [
-        'http:0.0.0.0:4100',
-        'http:localhost:4100',
-        'http:0.0.0.0:8000',
-        'http:localhost:8000',
-        'http:0.0.0.0:4200',
-        'http:localhost:4200',
-        'http:0.0.0.0:4000',
-        'http:localhost:4000',
-        'http:0.0.0.0:5000',
-        'http:localhost:5000',
-        'http:192,168.33.10:5000'
-    ]
+    CORS_ORIGIN_WHITELIST = {
+        #'http://0.0.0.0:4100',
+        #'http://localhost:4100',
+        #'http://0.0.0.0:8000',
+        #'http://localhost:8000',
+        #'http://0.0.0.0:4200',
+        'http://localhost:4200'
+        #'http://0.0.0.0:4000',
+        #'http://localhost:4000',
+        #'http://0.0.0.0:5000',
+        #'http://localhost:5000',
+        #'http://192,168.33.10:5000'
+    }
 
 
 class Production(object):
