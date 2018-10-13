@@ -4,8 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material';
-import { AuthService } from './services/auth.service';
 import { HttpModule } from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
+import { LoginService } from './services/login.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './login/header/header.component';
@@ -70,13 +71,14 @@ const appRoutes: Routes = [
   ],
   imports: [
     HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     ),
     BrowserModule, FormsModule, BrowserAnimationsModule, MaterialModule
   ],
-  providers: [AuthService],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

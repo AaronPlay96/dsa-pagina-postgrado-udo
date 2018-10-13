@@ -57,12 +57,12 @@
     
     <mat-form-field>
       <mat-label>Usuario</mat-label>
-      <input matInput type="email" name="user" placeholder="Ingrese su usuario" [(ngModel)]="xuser" #user="ngModel" required>
+      <input matInput type="email" name="user" placeholder="Ingrese su usuario" [(ngModel)]="login.usuario" #user="ngModel" required>
     </mat-form-field>
     
     <mat-form-field>
       <mat-label>Clave</mat-label>
-      <input matInput type="password" name="psw" placeholder="Ingrese su clave" [(ngModel)]="xpsw" #psw="ngModel" required> 
+      <input matInput type="password" name="psw" placeholder="Ingrese su clave" [(ngModel)]="login.password" #psw="ngModel" required> 
     </mat-form-field>
     
     <mat-form-field>

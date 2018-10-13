@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-
+import { Loginfo } from '../../services/loginfo';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login-form',
@@ -10,9 +10,8 @@ import { AuthService } from '../../services/auth.service';
 })
 
 export class LoginFormComponent implements OnInit {
-  public user = ' ';
-  public psw = ' ';
-  constructor(private router: Router, private auth: AuthService) { }
+  login = new Loginfo('', '');
+  constructor(private router: Router, private loginserv: LoginService) { }
   options = [
     { name: 'Estudiante', value: 1 },
     { name: 'Profesor', value: 2 },
@@ -22,16 +21,21 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
   iniciarSesion(form) {
-    console.log(this.user);
-    console.log(this.psw);
-    console.log(this.selectedOption);
-    if (this.selectedOption === 'Estudiante') {
-      this.router.navigate(['/student']);
-    } else if (this.selectedOption === 'Profesor') {
-      this.router.navigate(['/profesor']);
-    } else {
-      this.router.navigate(['/admin']);
-    }
+    this.loginserv.login(this.login).subscribe(
+      (data: any) => {
+        // log the employee object after the post is completed
+        console.log(data);
+        form.reset();
+        if (this.selectedOption === 'Estudiante') {
+          this.router.navigate(['/student']);
+        } else if (this.selectedOption === 'Profesor') {
+          this.router.navigate(['/profesor']);
+        } else {
+          this.router.navigate(['/admin']);
+        }
+      },
+      (error: any) => { console.log(error); }
+    );
     console.log(form.value);
   }
 }
