@@ -4,11 +4,14 @@ from flask_jwt_extended import (
     create_refresh_token)
 from flask import Blueprint, request, jsonify, session
 from src.models import usermodel
+from src.crossdomain import crossdomain
+from src import config
 
 log_in = Blueprint('login', __name__,url_prefix='/login')
 
 
 @log_in.route('/auth', methods=['POST'])
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST)
 def login():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}), 400

@@ -35,3 +35,10 @@ class PostgradoModel(db.Model):
   def get_postgrado(self):
       s = PostgradoModel.query.all()
       return s
+
+  def serialize(self):
+    return {
+      'id_postgrado': self.id_postgrado,
+      'especialidad': self.especialidad
+    }
+

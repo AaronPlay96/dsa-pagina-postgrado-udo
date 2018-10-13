@@ -1,5 +1,5 @@
 from . import db
-from ..app import bcrypt
+from . import bcrypt
 import json
 
 
@@ -55,3 +55,10 @@ class UserModel(db.Model):
         db.session.add(self)
         db.session.commit()
         return "usuario registrado"
+
+    def serialize(self):
+        return {
+            "cedula": self.cedula,
+            "nombre": self.nombre,
+            "apellido": self.apellido
+        }
