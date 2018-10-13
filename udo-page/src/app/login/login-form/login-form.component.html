@@ -67,8 +67,8 @@
     
     <mat-form-field>
       <mat-label>Tipo de usuario</mat-label>
-      <mat-select [(ngModel)]="selectedOption" name="usertype" required>
-        <mat-option *ngFor="let o of options" [value]="o.name">
+      <mat-select [(ngModel)]="login.type" name="usertype" required>
+        <mat-option *ngFor="let o of options" [value]="o.value">
           {{o.name}}
         </mat-option>
       </mat-select>    

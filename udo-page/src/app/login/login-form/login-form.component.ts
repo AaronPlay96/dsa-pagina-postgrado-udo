@@ -10,7 +10,7 @@ import { LoginService } from '../../services/login.service';
 })
 
 export class LoginFormComponent implements OnInit {
-  login = new Loginfo('', '');
+  login = new Loginfo('', '', 0);
   constructor(private router: Router, private loginserv: LoginService) { }
   options = [
     { name: 'Estudiante', value: 1 },
