@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class NotasComponent implements OnInit {
 
   constructor() { }
+  materias = ['matematica', 'programacion', 'logica'];
 
   ngOnInit() {
   }

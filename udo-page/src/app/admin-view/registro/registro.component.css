@@ -1,0 +1,53 @@
+.registro-form {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 50px;
+}
+
+mat-radio-button{
+    margin: 10px;
+}
+
+.form-group1 {
+    grid-column: 1/2;
+}
+.form-group2 {
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+
+.form-group3 {
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+.form-group4 {
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+
+.form-group5 {
+    grid-column: 2/3;
+    grid-row: 4/5;
+}
+
+.form-group6 {
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+
+.form-group7 {
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+
+.form-group8 {
+    align-content: center;
+    width: 50px;
+    grid-column: 3/4;
+    grid-row: 4/4;
+}
+
+.mat-raised-button {
+    margin: 15px 30px;
+}

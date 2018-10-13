@@ -1,14 +1,15 @@
-.login {
-    width: 320px;
-    height: 420px;
+.login-card {
+    width: 300px;
+    height: 400px;
     background: white;
     color: grey;
     position: absolute;
+    display: block;
     top: 55%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     box-sizing: border-box;
-    padding: 70px 30px;
+    padding: 50px 30px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 10px;
 }
@@ -18,113 +19,14 @@
     height: 100px;
     position: absolute;
     top: -50px;
-    left: calc(50% - 50px);
+    left: calc(50% - 26px);
 }
 
-.login label {
-    margin: 0;
-    padding: 0;
-    font-family: Impact;
-    font-size: 20px;
-}
-
-.login input{
+.olvideClave, button, mat-form-field {
     width: 100%;
-    margin-bottom: 20px;
 }
 
-.login input[type="text"], input[type="password"]{
-    border: none;
-    border-bottom: 1px solid grey;
-    background: transparent;
-    outline: none;
+.olvideClave {
+    margin-top: 30px;
 }
 
-.login input[type="submit"]{
-    border: none;
-    outline: none;
-    height: 40px;
-    background: gray;
-    color: rgb(255, 255, 255);
-    font-size: 18px;
-    font-family: Impact;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.login input[type="submit"]:hover{
-    cursor: pointer;
-    background: rgb(56, 56, 56);
-}
-
-.olvideClave{
-    cursor: pointer;
-    font-size: 20px;
-    font-family: Impact;
-    width: 50%;
-}
-
-.olvideClave:hover{
-    text-decoration: underline;
-    color: rgb(56, 56, 56);
-}
-
-.select .arr {
-    background: #fff;
-    bottom: 1px;
-    position: absolute;
-    right: 1px;
-    top: 1px;
-    width: 50px;
-    pointer-events: none;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border-radius: 7px;
-}
-.select .arr:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 9px;
-    margin-top: -5px;
-    pointer-events: none;
-    border-top: 10px solid gray;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-}
-.select .arr:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 13px;
-    margin-top: -5px;
-    pointer-events: none;
-    border-top: 6px solid #fff;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-}
-
-.select select {
-    outline: none;
-    -webkit-appearance: none;
-    display: block;
-    padding: 0.3em 4em 0.3em 1.5em;
-    margin-top: 5px;
-    margin-bottom: 15px;
-  
-    transition: border-color 0.2s;
-    border: 1px solid gray;
-    border-radius: 7px;
-  
-    background: #fff;
-    color: #555;
-    line-height: normal;
-    font-family: Arial;
-    font-size: 14px;
-    line-height: inherit;
-}
-.select {
-    font-size: 16px;
-    position: relative;
-    display: inline-block;
-}

@@ -1,4 +1,4 @@
-ul {
+/*ul {
     list-style-type: none;
     margin: 10;
     padding: 0;
@@ -41,11 +41,12 @@ li a:hover {
 .container {
     margin: 15px;
     padding: 0;
+}*/
+
+.nav-link {
+    margin: 10px;
+    font-size: 16px;
 }
 
-.logo {
-    width: 20px;
-    height: 20px;
-}
 
 

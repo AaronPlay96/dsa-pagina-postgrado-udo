@@ -1,3 +1,70 @@
-<section>
-  <a>Registro de estudiantes y profesores</a>
-</section>
+<mat-card class="registro-card">
+  <h1>Registro de estudiantes y profesores</h1>
+
+  
+  <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm.form)" class="registro-form">
+
+    <mat-radio-group class="form-group" [(ngModel)]="tipo" name="tipo">
+      <mat-radio-button class="Prof" value="Prof" name="tipo" required > <strong>Profesor</strong></mat-radio-button>
+      <mat-radio-button class="Est" value="Est" name="tipo" required > <strong>Estudiante</strong></mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field class="form-group1">
+      <mat-label><strong>Correo Electronico</strong></mat-label>
+      <input matInput type="email" class="form-control" [(ngModel)]="signup.email" required placeholder="nombre@ejemplo.com" name="uEmail" #email="ngModel"/>
+    </mat-form-field>
+
+    <mat-form-field class="form-group1">
+      <mat-label><strong>Contraseña </strong></mat-label>
+      <input matInput type="password" class="form-control" [(ngModel)]="signup.password" name="password" (blur)="confirmPassword()" required placeholder="Cree su contraseña" #pswd="ngModel"/>
+    </mat-form-field>
+      
+    <mat-form-field class="form-group1">
+      <mat-label><strong>Confirme contraseña </strong></mat-label>
+      <input matInput type="password" class="form-control" [(ngModel)]="passwordConfirmationTxt" (blur)="confirmPassword()" required name="passwordConfirmationTxt" #pswdc="ngModel"/>
+      <mat-hint [style.visibility]="passwordConfirmationFailed ? (!pswd.pristine ? 'visible' : 'hidden') : 'hidden'" class="alert-danger">Contraseña no coincide</mat-hint>
+    </mat-form-field>
+      
+    <mat-form-field class="form-group2">
+      <mat-label><strong>Nombre </strong></mat-label>
+      <input matInput class="form-control" [(ngModel)]="signup.nombre" placeholder="ingrese su nombre" required name="uName" #name="ngModel"/>
+    </mat-form-field>
+      
+    <mat-form-field class="form-group3">
+      <mat-label><strong>Apellido </strong></mat-label>
+      <input matInput class="form-control" [(ngModel)]="signup.apellido" placeholder="ingrese su apellido" required name="lName" #lastname="ngModel"/>
+    </mat-form-field>
+      
+    <mat-form-field class="form-group4">
+      <mat-label><strong>C.I. </strong></mat-label>
+      <input matInput class="form-control" [(ngModel)]="signup.cedula" placeholder="" required name="cedula" #cedula="ngModel"/>
+    </mat-form-field>
+
+    <mat-form-field class="form-group5">
+      <mat-label><strong>Telefono</strong></mat-label>
+      <input matInput class="form-control" [(ngModel)]="signup.telefono" placeholder="" required name="telefono" #telefono="ngModel"/>
+    </mat-form-field>
+      
+    <mat-form-field class="form-group6" 
+      *ngIf="!(tipo === 'null') ? (tipo === 'Prof' ? true : false) : false" >
+        <mat-label>PROFESOR</mat-label>
+        <input matInput />
+    </mat-form-field>
+    
+    <mat-form-field class="form-group7" 
+      *ngIf="!(tipo === 'null') ? (tipo === 'Est' ? true : false) : false" >
+        <mat-label>Titulo de pregrado</mat-label>
+        <mat-select [(ngModel)]="selectedOption" name="pregrado" required>
+          <mat-option *ngFor="let p of titulos_pregrado " [value]="p">
+            {{p}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    
+    <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid || passwordConfirmationFailed">Enviar</button>
+    
+   
+
+  </form>
+</mat-card>

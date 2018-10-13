@@ -1,24 +1,211 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 body{
     margin: 0;
     padding: 0;
     background-image: url(UDO_ANZ.jpg);
     background-position: center;
+    background-attachment: fixed;
     background-size: auto;
 }
 
-section {
+.logo {
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+}
+
+mat-toolbar{
+    background-color: #ffffff;
+    color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-link {
+    margin: 10px;
+    font-size: 16px;
+}
+
+.example-fill-remaining-space {
+    flex: 1 1 auto;
+}
+
+.titulo {
+    margin: 10px;
+}
+
+/*section {
     background: white;
     border-radius: 10px;
     margin: 15px;
-    padding: 20px 25px;
-    height: 400px;
+    padding: 15px 30px;
+    height: 465px;
     border-style: solid;
     border-width: 4px;
     border-color: #333;
 }
 
 section a {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+}
+
+h1 {
+    display: block;
+    color: black;
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 18px;
 }
+
+.select .arr {
+    background: #fff;
+    bottom: 1px;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    width: 50px;
+    pointer-events: none;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 7px;
+}
+.select .arr:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 9px;
+    margin-top: -5px;
+    pointer-events: none;
+    border-top: 10px solid gray;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+.select .arr:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 13px;
+    margin-top: -5px;
+    pointer-events: none;
+    border-top: 6px solid #fff;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+}
+
+.select select {
+    outline: none;
+    -webkit-appearance: none;
+    display: block;
+    padding: 0.3em 4em 0.3em 1.5em;
+    margin-top: 5px;
+    margin-bottom: 15px;
+  
+    transition: border-color 0.2s;
+    border: 1px solid gray;
+    border-radius: 7px;
+  
+    background: #fff;
+    color: #555;
+    line-height: normal;
+    font-family: Arial;
+    font-size: 14px;
+    line-height: inherit;
+}
+.select {
+    font-size: 16px;
+    position: relative;
+    display: inline-block;
+}
+
+.ng-valid[required], .ng-valid.required  {
+    border: 1px solid grey;
+    border-left: 5px solid #42A948;
+}
+   
+.ng-invalid:not(form)  {
+    border: 1px solid grey;
+    border-left: 5px solid #a94442;
+}
+
+.alert-danger {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    color: red;
+    margin-top: 5px;
+}
+
+input[type="submit"]{
+    border: none;
+    outline: none;
+    margin-top: 20pt;
+    width: 70pt;
+    height: 40px;
+    background: gray;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-family: Impact;
+    border-radius: 7px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    grid-row: 5/6;
+}
+
+input[type="submit"]:hover{
+    cursor: pointer;
+    background: rgb(56, 56, 56);
+}
+
+.form-control {
+    border: 1px solid grey;
+    background: transparent;
+    outline: none;
+    margin-top: 5px;
+    border-radius: 7px;
+    width: 200px;
+    height: 20px;
+}
+
+.registroForm {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+}
+
+.form-group {
+    width: 200px;
+    height: 70px;
+    grid-column: 1/2;
+}
+
+.form-group2 {
+    width: 200px;
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+.form-group3 {
+    width: 200px;
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+
+.form-group4 {
+    width: 200px;
+    grid-column: 2/3;
+    grid-row: 4/5;
+}
+
+.form-group6 {
+    width: 200px;
+    grid-column: 2/3;
+    grid-row: 5/6;
+}
+
+.form-group5 {
+    width: 200px;
+    grid-column: 3/4;
+    grid-row: 1/2;
+}*/

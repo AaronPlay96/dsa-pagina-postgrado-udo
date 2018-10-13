@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -11,23 +12,16 @@ import { Router } from '@angular/router';
 export class LoginFormComponent implements OnInit {
   public user = ' ';
   public psw = ' ';
-  selectedOption: string;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private auth: AuthService) { }
   options = [
     { name: 'Estudiante', value: 1 },
     { name: 'Profesor', value: 2 },
     { name: 'Administrador', value: 3 }
   ];
-
-  ngOnInit() {
+  selectedOption: string;
+  ngOnInit(): void {
   }
-  iniciarSesion(usuario: string, clave: string) {
-    if (usuario) {
-      this.user = usuario;
-    }
-    if (clave) {
-      this.psw = clave;
-    }
+  iniciarSesion(form) {
     console.log(this.user);
     console.log(this.psw);
     console.log(this.selectedOption);
@@ -38,5 +32,6 @@ export class LoginFormComponent implements OnInit {
     } else {
       this.router.navigate(['/admin']);
     }
+    console.log(form.value);
   }
 }

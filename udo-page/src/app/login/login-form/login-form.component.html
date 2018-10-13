@@ -1,4 +1,4 @@
-<form>
+<!--<form>
   <div class = "login">
     <img src = "logo_udo.png" class = "logo">
     
@@ -26,3 +26,57 @@
     <p class="olvideClave">Olvide mi clave</p>
   </div>
 </form>
+
+<form #signinForm="ngForm" (ngSubmit)="iniciarSesion(signinForm.form)" class="login">
+    <img src = "logo_udo.png" class = "logo">
+    
+    <label>Usuario</label>
+    <input type="email" name="user" placeholder="Ingrese su usuario" [(ngModel)]="xuser" #user="ngModel" required>
+    
+    <label>Clave</label>
+    <input type="password" name="psw" placeholder="Ingrese su clave" [(ngModel)]="xpsw" #psw="ngModel" required> 
+    
+    <label>Tipo de usuario</label>
+    <div class="select">
+      <span class="arr"></span>
+      <select [(ngModel)]="selectedOption" name="usertype" required>
+          <option *ngFor="let o of options">
+            {{o.name}}
+          </option>
+      </select>    
+    </div>
+
+    <input type="submit" value = "Ingresar" [disabled]="!signinForm.valid">
+    
+    <p class="olvideClave">Olvide mi clave</p>
+</form>-->
+
+<mat-card class="login-card"> 
+  <form #signinForm="ngForm" (ngSubmit)="iniciarSesion(signinForm.form)" class="login">
+    <img mat-card-image src="logo_udo.png" class="logo">
+    
+    <mat-form-field>
+      <mat-label>Usuario</mat-label>
+      <input matInput type="email" name="user" placeholder="Ingrese su usuario" [(ngModel)]="xuser" #user="ngModel" required>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Clave</mat-label>
+      <input matInput type="password" name="psw" placeholder="Ingrese su clave" [(ngModel)]="xpsw" #psw="ngModel" required> 
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Tipo de usuario</mat-label>
+      <mat-select [(ngModel)]="selectedOption" name="usertype" required>
+        <mat-option *ngFor="let o of options" [value]="o.name">
+          {{o.name}}
+        </mat-option>
+      </mat-select>    
+    </mat-form-field>
+    
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!signinForm.valid">Iniciar sesion</button>
+    
+    <a class="olvideClave" mat-button>Olvide mi clave</a>
+  </form>
+</mat-card>
