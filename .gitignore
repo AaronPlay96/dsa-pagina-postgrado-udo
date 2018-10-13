@@ -6,3 +6,5 @@ udo-page/package\.json
 \.vscode
 
 \back-end\migrations
+
+back-end/.idea/
