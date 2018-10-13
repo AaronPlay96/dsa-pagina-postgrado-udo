@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material';
@@ -76,7 +77,7 @@ const appRoutes: Routes = [
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     ),
-    BrowserModule, FormsModule, BrowserAnimationsModule, MaterialModule
+    BrowserModule, FormsModule, BrowserAnimationsModule, MaterialModule, ReactiveFormsModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

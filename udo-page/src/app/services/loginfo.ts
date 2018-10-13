@@ -1,6 +1,6 @@
 export class Loginfo {
     constructor (
-        public usuario: string,
+        public username: string,
         public password: string
     ) {}
 }

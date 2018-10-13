@@ -1,3 +1,18 @@
 <mat-card class="ajustes-card">
-  <h1>Ajustes del postgrado</h1>
+  <h1>Creacion de curso de Postgrado</h1>
+  
+  <mat-horizontal-stepper linear="true" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Nombre de Postgrado</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="ingrese nombre del curso de Postgrado" formControlName="postgradoName" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+
 </mat-card>
