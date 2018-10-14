@@ -1,4 +1,7 @@
 from . import db
+from . import *
+
+dbuser = usermodel.UserModel
 
 class StudentModel(db.Model):
   """
@@ -28,3 +31,16 @@ class StudentModel(db.Model):
     db.session.add(self)
     db.session.commit()
     return "datos registrados"
+
+  def obtener_id_estudiante(self,id):
+      s = db.session.query(self,dbuser).join(dbuser).filter_by(cedula=id).first()
+      if s:
+        return {'id_estudiante' : s.id_estudiante}
+      else:
+        return {'respuesta' : 'el estudiante aun no pertenece a un cohorte'}
+
+  def obtener_estudiante_by_cohorte(self,id):
+      s = db.session.query(self,dbuser).join(dbuser).filter_by(id_cohorte=id).all()
+      return s
+
+
