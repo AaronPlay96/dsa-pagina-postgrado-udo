@@ -2,20 +2,54 @@
   <h1>Creacion de curso de Postgrado</h1>
   <div class="stepper">
     <mat-horizontal-stepper linear="true" #stepper>
-      <mat-step [stepControl]="firstFormGroup">
+      <mat-step [stepControl]="firstFormGroup" [completed]="false">
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>Nombre de Postgrado</ng-template>
           <mat-form-field class="nombre-field">
-            <input matInput placeholder="Ingrese nombre del curso de Postgrado" formControlName="postgradoName" required>
+            <input matInput placeholder="Ingrese nombre del curso de Postgrado" formControlName="especialidad" required>
           </mat-form-field>
           <div>
-            <button mat-button matStepperNext>Siguiente</button>
+            <button mat-button matStepperNext (click)="crearPostgrado()">Siguiente</button>
           </div>
         </form>
       </mat-step>
-      <mat-step [stepControl]="secondFormGroup">
+      <mat-step [stepControl]="myForm" [completed]="false">
         <ng-template matStepLabel>Pensum</ng-template>
-        <mat-label>Agregar materias</mat-label>
+        <div class="add-materia-label">  
+            <mat-label>Agregar materias</mat-label>   
+        </div>
+        <div class="container">  
+          <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
+              <div formArrayName="materias">
+                  <div *ngFor="let materia of myForm.controls.materias.controls; let i=index">
+                      <div>
+                          <span>Materia {{i + 1}}</span>
+                          <span *ngIf="myForm.controls.materias.controls.length > 1" 
+                              (click)="removeMateria(i)">
+                          </span>
+                      </div>
+          
+                      <div [formGroupName]="i">
+                          <mat-form-field class="campo">
+                              <mat-label>Nombre</mat-label>
+                              <input matInput required type="text" formControlName="nombre">
+                          </mat-form-field>
+                          <mat-form-field class="campo">
+                              <mat-label>Codigo</mat-label>
+                              <input matInput required type="text" formControlName="codigo">
+                          </mat-form-field>
+                          <mat-form-field class="campo">
+                              <mat-label>Numero de creditos</mat-label>
+                              <input matInput required type="number" formControlName="creditos">
+                          </mat-form-field>
+                          <button mat-button color="warn" (click)="removeMateria(i)">Borrar</button>
+                      </div>
+                  </div>
+              </div>
+              <button mat-button color="accent" (click)="addMateria()" [disabled]="!myForm.valid">Agregar Materia</button>
+              <button mat-button type="submit" color="primary" [disabled]="!myForm.valid">Guardar</button>
+          </form>
+        </div>
       </mat-step>
     </mat-horizontal-stepper>
   </div>

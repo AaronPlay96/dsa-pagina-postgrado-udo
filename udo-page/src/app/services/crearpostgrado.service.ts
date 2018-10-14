@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Loginfo } from './loginfo';
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
 };
-
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class CrearpostgradoService {
+
   constructor(public http: HttpClient) { }
-  login(infor: Loginfo): Observable<any> {
-    const json = JSON.stringify(infor);
+  crear(nombre: any): Observable<any> {
+    const json = JSON.stringify(nombre);
     console.log(json);
     const url = 'http://localhost:5000/';
-    return this.http.post(url + 'login/auth', json, httpOptions);
+    return this.http.post(url + 'admin/postgrado', json, httpOptions);
   }
 }

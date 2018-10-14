@@ -8,6 +8,7 @@ import {MaterialModule} from './material';
 import { HttpModule } from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginService } from './services/login.service';
+import { CrearpostgradoService } from './services/Crearpostgrado.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './login/header/header.component';
@@ -79,7 +80,7 @@ const appRoutes: Routes = [
     ),
     BrowserModule, FormsModule, BrowserAnimationsModule, MaterialModule, ReactiveFormsModule
   ],
-  providers: [LoginService],
+  providers: [LoginService, CrearpostgradoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

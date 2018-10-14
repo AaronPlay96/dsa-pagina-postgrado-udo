@@ -6,3 +6,17 @@
 .stepper {
     padding: 0 100px;
 }
+
+.add-materia-label {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.container {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.campo {
+    margin: 20px;
+}
