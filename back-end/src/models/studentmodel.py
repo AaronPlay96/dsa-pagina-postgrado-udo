@@ -1,5 +1,5 @@
 from . import db
-from . import *
+from . import usermodel
 
 dbuser = usermodel.UserModel
 

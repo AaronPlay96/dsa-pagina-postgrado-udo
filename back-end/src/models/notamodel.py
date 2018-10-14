@@ -39,5 +39,5 @@ class NotaModel(db.Model):
   def get_full_notas(self, id) -> object:
       a = db.session.query(self, dbmateria, dbstudent). \
           filter(self.id_materia == dbmateria.id_materia).\
-          filter(self.id_estudiante==dbstudent.id_estudiante).filter(self.id_estudiante==id).all()
+          filter(self.id_estudiante == dbstudent.id_estudiante).filter(self.id_estudiante == id).all()
       return a
