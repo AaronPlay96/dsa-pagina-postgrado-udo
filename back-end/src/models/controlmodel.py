@@ -1,6 +1,7 @@
 from . import db
 from src.models import cohortemodel, materiamodel, usermodel
 
+dbmateria = materiamodel.MateriaModel
 
 class ControlModel(db.Model):
     """
@@ -45,4 +46,11 @@ class ControlModel(db.Model):
     def get_full_control(self) -> object:
         s = db.session.query(self, cohortemodel.CohorteModel, usermodel.UserModel, materiamodel.MateriaModel).join(cohortemodel.CohorteModel, usermodel.UserModel, materiamodel.MateriaModel).all()
         return s
+
+    def get_control_by_profesor_id(self,id):
+        s = db.session.query(self,dbmateria).join(dbmateria).filter_by(id_profesor=id).filter_by(captura=True).all()
+        if s:
+            return s
+        else:
+            return 'no hay materias habilitadas para la captura de la nota'
 
