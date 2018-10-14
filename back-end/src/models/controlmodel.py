@@ -14,8 +14,8 @@ class ControlModel(db.Model):
     id_cohorte = db.Column(db.Integer, db.ForeignKey('cohorte.id_cohorte'))
     id_materia = db.Column(db.Integer, db.ForeignKey('materia.id_materia'))
     id_profesor = db.Column(db.Integer, db.ForeignKey('persona.cedula'))
-    fecha_inicio = db.Column(db.DateTime)
-    fecha_fin = db.Column(db.DateTime)
+    fecha_inicio = db.Column(db.String)
+    fecha_fin = db.Column(db.String)
     captura = db.Column(db.Boolean)
 
     # class constructor
@@ -46,21 +46,3 @@ class ControlModel(db.Model):
         s = db.session.query(self, cohortemodel.CohorteModel, usermodel.UserModel, materiamodel.MateriaModel).join(cohortemodel.CohorteModel, usermodel.UserModel, materiamodel.MateriaModel).all()
         return s
 
-    @property
-    def serialize(self):
-        return {
-            "id_control": self.id_control,
-            "id_cohorte": self.id_cohorte,
-            "materia": self.id_materia,
-            "id_profesor": self.id_profesor,
-            "fecha_inicio": self.fecha_inicio,
-            "fecha_fin": self.fecha_fin,
-            "captura": self.captura,
-            "id_postgrado": cohortemodel.CohorteModel.id_postgrado,
-            "year": cohortemodel.CohorteModel.year,
-            "nombre_materia": materiamodel.MateriaModel.nombre,
-            "creditos": materiamodel.MateriaModel.creditos,
-            "codigo": materiamodel.MateriaModel.codigo,
-            "nombre": usermodel.UserModel.nombre,
-            "apellido": usermodel.UserModel.apellido
-        }

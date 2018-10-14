@@ -1,9 +1,3 @@
-from json import JSONEncoder
-
-from flask_jwt_extended import (
-    JWTManager, jwt_required, create_access_token,
-    get_jwt_identity,
-    create_refresh_token)
 from flask import Blueprint, request, jsonify
 from src.models import *
 from src.serializers import control
@@ -20,7 +14,7 @@ ser_control = control.Control
 admin_api = Blueprint('admin', __name__, url_prefix='/admin')
 
 
-@admin_api.route('/register', methods=['POST'])
+@admin_api.route('/register', methods=['POST','OPTIONS'])
 @crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def register():
     if not request.is_json:
@@ -30,7 +24,7 @@ def register():
     return jsonify({'respuesta': usermodel.UserModel.save(user)}), 200
 
 
-@admin_api.route('/postgrado', methods=['POST'])
+@admin_api.route('/postgrado', methods=['POST','OPTIONS'])
 @crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def postgrado():
     if not request.is_json:
@@ -42,7 +36,7 @@ def postgrado():
     return jsonify({"id_ultimo": p_last, "respuesta": p_response}), 200
 
 
-@admin_api.route('/cohorte', methods=['POST'])
+@admin_api.route('/cohorte', methods=['POST','OPTIONS'])
 @crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def cohorte():
     if not request.is_json:
@@ -54,7 +48,7 @@ def cohorte():
     return jsonify({"id_ultimo": c_last, "respuesta": c_response}), 200
 
 
-@admin_api.route('/estudiantes', methods=['POST'])
+@admin_api.route('/estudiantes', methods=['POST','OPTIONS'])
 @crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def estudiantes():
     if not request.is_json:
@@ -70,7 +64,7 @@ def estudiantes():
     return jsonify({"respuesta": 'estudiantes registrados en el cohorte'}), 200
 
 
-@admin_api.route('/materias', methods=['POST'])
+@admin_api.route('/materias', methods=['POST','OPTIONS'])
 @crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def materias():
     if not request.is_json:
@@ -87,7 +81,7 @@ def materias():
     return jsonify({'respuesta': 'materias registradas'}), 200
 
 
-@admin_api.route('/notas', methods=['POST'])
+@admin_api.route('/notas', methods=['POST','OPTIONS'])
 @crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def notas():
     if not request.is_json:
@@ -104,7 +98,7 @@ def notas():
     return jsonify({"respuesta": 'notas registradas'}), 200
 
 
-@admin_api.route('/control', methods=['POST'])
+@admin_api.route('/control', methods=['POST','OPTIONS'])
 @crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def control():
     if not request.is_json:
@@ -115,7 +109,7 @@ def control():
     return jsonify({"respuesta": c_response}), 200
 
 
-@admin_api.route('/cohorte', methods=['GET'])
+@admin_api.route('/cohorte', methods=['GET','OPTIONS'])
 @crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['GET'],headers=['Content-Type'])
 def obtener_estudiantes():
     if not request.is_json:
@@ -133,7 +127,7 @@ def obtener_postgrados():
     return jsonify(list=[dbpost.serialize() for dbpost in post]), 200
 
 
-@admin_api.route('/control', methods=['GET'])
+@admin_api.route('/control', methods=['GET','OPTIONS'])
 @crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['GET'],headers=['Content-Type'])
 def obtener_control_materias():
     if not request.is_json:
@@ -144,14 +138,21 @@ def obtener_control_materias():
                             "id_cohorte": a[0].id_cohorte,
                             "materia": a[0].id_materia,
                             "id_profesor": a[0].id_profesor,
-                            "fecha_inicio": str(a[0].fecha_inicio),#json.dumps(a[0].fecha_inicio, indent=4, sort_keys=True, default=str),
-                            "fecha_fin":str(a[0].fecha_inicio), #json.dumps(a[0].fecha_fin, indent=4, sort_keys=True, default=str),
+                            "fecha_inicio": a[0].fecha_inicio,#json.dumps(a[0].fecha_inicio, indent=4, sort_keys=True, default=str),
+                            "fecha_fin":a[0].fecha_inicio, #json.dumps(a[0].fecha_fin, indent=4, sort_keys=True, default=str),
                             "captura": a[0].captura,
                             "id_postgrado": a[1].id_postgrado,
-                            "year": a[1].year,
+                            "year": json.dumps(a[1].year, indent=4, sort_keys=True, default=str),
                             "nombre_materia": a[3].nombre,
                             "creditos": a[3].creditos,
                             "codigo": a[3].codigo,
                             "nombre": a[2].nombre,
                             "apellido": a[2].apellido
                           }for a in cont]), 200
+
+@admin_api.route('/control', methods=['PUT','OPTIONS'])
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['PUT'],headers=['Content-Type'])
+def habilitar_captura():
+    if not request.is_json:
+        return jsonify({"msg": "Missing JSON in request"})
+    return jsonify({'respuesta' : dbcontrol.habilitar_captura(dbcontrol,request.json['id_control'])})

@@ -11,8 +11,8 @@ class CohorteModel(db.Model):
   id_cohorte= db.Column(db.Integer, primary_key=True, autoincrement=True)
   id_postgrado = db.Column(db.Integer, db.ForeignKey('postgrado.id_postgrado'))
   year = db.Column(db.DateTime, nullable=False)
-  seccion = db.Column(db.String(128), nullable=False,unique=True,autoincrement=True)
-  estudiante = db.relationship("StudentModel", backref='cohort', lazy=True)
+  seccion = db.Column(db.String(128), nullable=False, unique=True)
+  estudiante = db.relationship("StudentModel", backref='cohorte', lazy=True)
   control = db.relationship("ControlModel", backref='cohorte', lazy=True)
 
   # class constructor
@@ -22,6 +22,7 @@ class CohorteModel(db.Model):
     """
     self.id_postgrado = data.get('id_postgrado')
     self.year = data.get('year')
+    self.seccion = data.get('seccion')
   
   def __repr(self):
     return '<id_cohorte {}>'.format(self.id_cohorte)

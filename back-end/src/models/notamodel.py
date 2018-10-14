@@ -1,4 +1,10 @@
 from . import db
+from src.models import materiamodel, usermodel, studentmodel
+
+dbmateria = materiamodel.MateriaModel
+dbuser = usermodel.UserModel
+dbstudent = studentmodel.StudentModel
+
 
 class NotaModel(db.Model):
   """
@@ -29,3 +35,8 @@ class NotaModel(db.Model):
     db.session.add(self)
     db.session.commit()
     return "datos registrados"
+
+  def get_full_notas(self, id) -> object:
+      s = db.session.query(self, dbmateria).join(dbmateria).all()
+      z = db.session.query(dbstudent, s).join(s).filter_by(id_estudiante=id).all()
+      return z

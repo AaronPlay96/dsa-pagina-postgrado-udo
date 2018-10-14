@@ -20,14 +20,17 @@ def create_app(env_name):
     db.init_app(app)
     JWTManager.init_app(jwt, app)
 
-    from .controllers.login import log_in as login_blueprint
-    app.register_blueprint(login_blueprint)
 
     # register blueprints
 
 
     from .controllers.admin import admin_api as admin_blueprint
     app.register_blueprint(admin_blueprint)
+    from .controllers.login import log_in as login_blueprint
+    app.register_blueprint(login_blueprint)
+    from .controllers.student import student_api as student_blueprint
+    app.register_blueprint(student_blueprint)
+
     app.json_encoder = AlchemyEncoder
 
     return app
