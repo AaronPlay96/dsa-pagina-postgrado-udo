@@ -30,6 +30,8 @@ def create_app(env_name):
     app.register_blueprint(login_blueprint)
     from .controllers.student import student_api as student_blueprint
     app.register_blueprint(student_blueprint)
+    from .controllers.profesor import profesor_api as profesor_blueprint
+    app.register_blueprint(profesor_blueprint)
 
     app.json_encoder = AlchemyEncoder
 

@@ -37,6 +37,7 @@ class NotaModel(db.Model):
     return "datos registrados"
 
   def get_full_notas(self, id) -> object:
-      s = db.session.query(self, dbmateria).join(dbmateria).all()
-      z = db.session.query(dbstudent, s).join(s).filter_by(id_estudiante=id).all()
-      return z
+      a = db.session.query(self, dbmateria, dbstudent). \
+          filter(self.id_materia == dbmateria.id_materia).\
+          filter(self.id_estudiante==dbstudent.id_estudiante).filter(self.id_estudiante==id).all()
+      return a

@@ -9,8 +9,8 @@ class StudentModel(db.Model):
   __tablename__ = 'estudiante'
 
   id_estudiante = db.Column(db.Integer, primary_key=True, autoincrement=True)
-  cedula = db.Column(db.Integer, db.ForeignKey('persona.cedula'))
-  id_cohorte = db.Column(db.Integer, db.ForeignKey('cohorte.id_cohorte'))
+  cedula = db.Column(db.Integer, db.ForeignKey('persona.cedula'),nullable=False)
+  id_cohorte = db.Column(db.Integer, db.ForeignKey('cohorte.id_cohorte'),nullable=False)
   notas = db.relationship("NotaModel", backref='estudiante', lazy=True)
 
   # class constructor
@@ -23,3 +23,8 @@ class StudentModel(db.Model):
   
   def __repr(self):
     return '<id_estudiante {}>'.format(self.id_estudiante)
+
+  def save(self):
+    db.session.add(self)
+    db.session.commit()
+    return "datos registrados"
