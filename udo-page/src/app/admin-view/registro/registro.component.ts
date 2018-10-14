@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Registro } from './registro';
+import {RegistrarService} from '../../services/registrar.service';
 
 @Component({
   selector: 'app-registro',
@@ -8,7 +9,7 @@ import { Registro } from './registro';
 })
 export class RegistroComponent {
 
-  constructor() { }
+  constructor(private registrarserv: RegistrarService) { }
   profsel = false;
   estsel = false;
   tipo: string = null;
@@ -19,15 +20,19 @@ export class RegistroComponent {
   signup = new Registro('', '', '', '', '', '');
   titulos_pregrado = ['Ingenieria en Computacion', 'Ingenieria en Sistemas', 'Ingenieria Civil', 'Ingenieria Industrial', 'Medicina'];
   confirmPassword() {
-    if (this.signup.password === this.passwordConfirmationTxt) {
+    if (this.signup.clave === this.passwordConfirmationTxt) {
       this.passwordConfirmationFailed = false;
     } else {
       this.passwordConfirmationFailed = true;
     }
   }
   onSubmit(form) {
-    console.log(form.value);
-    form.reset();
+    this.registrarserv.registro(this.signup).subscribe(
+      (data: any) => {
+        console.log(data);
+      },
+      (error: any) => { console.log('error ' + error); }
+    );
   }
 
 }

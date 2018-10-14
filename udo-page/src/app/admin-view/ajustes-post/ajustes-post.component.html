@@ -7,9 +7,10 @@
           <ng-template matStepLabel>Nombre de Postgrado</ng-template>
           <mat-form-field class="nombre-field">
             <input matInput placeholder="Ingrese nombre del curso de Postgrado" formControlName="especialidad" required>
+            <mat-hint [hidden]="!existe" >Ya existe una especialidad con este nombre</mat-hint>
           </mat-form-field>
-          <div>
-            <button mat-button matStepperNext (click)="crearPostgrado()">Siguiente</button>
+          <div class="next">
+            <button mat-button color="primary" (click)="crearPostgrado()">Siguiente</button>
           </div>
         </form>
       </mat-step>
@@ -19,13 +20,14 @@
             <mat-label>Agregar materias</mat-label>   
         </div>
         <div class="container">  
-          <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
-              <div formArrayName="materias">
-                  <div *ngFor="let materia of myForm.controls.materias.controls; let i=index">
-                      <div>
+          <form [formGroup]="myForm" novalidate (ngSubmit)="crearPensum()">
+              <div formArrayName="list">
+                  <div *ngFor="let materia of myForm.controls.list.controls; let i=index">
+                      <div class="materia">
                           <span>Materia {{i + 1}}</span>
-                          <span *ngIf="myForm.controls.materias.controls.length > 1" 
-                              (click)="removeMateria(i)">
+                          <span *ngIf="myForm.controls.list.controls.length > 1" 
+                              (click)="removeMateria(i)" >
+                              <button mat-button color="warn" (click)="removeMateria(i)">Borrar</button>
                           </span>
                       </div>
           
@@ -42,7 +44,7 @@
                               <mat-label>Numero de creditos</mat-label>
                               <input matInput required type="number" formControlName="creditos">
                           </mat-form-field>
-                          <button mat-button color="warn" (click)="removeMateria(i)">Borrar</button>
+                          
                       </div>
                   </div>
               </div>
