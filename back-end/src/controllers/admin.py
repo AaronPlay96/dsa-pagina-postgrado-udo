@@ -118,7 +118,7 @@ def obtener_estudiantes():
     return jsonify(list=[dbuser.serialize() for dbuser in person]), 200
 
 
-@admin_api.route('/cohorte_post', methods=['GET'])
+@admin_api.route('/cohorte_post', methods=['GET','OPTIONS'])
 @crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['GET'],headers=['Content-Type'])
 def obtener_postgrados():
     if not request.is_json:
@@ -142,7 +142,7 @@ def obtener_control_materias():
                             "fecha_fin":a[0].fecha_inicio, #json.dumps(a[0].fecha_fin, indent=4, sort_keys=True, default=str),
                             "captura": a[0].captura,
                             "id_postgrado": a[1].id_postgrado,
-                            "year": json.dumps(a[1].year, indent=4, sort_keys=True, default=str),
+                            "year":a[1].year,
                             "nombre_materia": a[3].nombre,
                             "creditos": a[3].creditos,
                             "codigo": a[3].codigo,
