@@ -36,4 +36,17 @@ class MateriaModel(db.Model):
   def save(self):
     db.session.add(self)
     db.session.commit()
-    return "materias registradas"
+    return
+
+  def obtener_materias_by_postgrado(self, id):
+      s = db.session.query(self).filter_by(id_postgrado=id).all()
+      return s
+
+  def serialize(self):
+    return {
+      'id_postgrado': self.id_postgrado,
+      'nombre': self.nombre,
+      'codigo': self.codigo,
+      'creditos': self.creditos
+    }
+

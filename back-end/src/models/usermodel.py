@@ -64,6 +64,10 @@ class UserModel(db.Model):
         s = UserModel.query.filter_by(usuario=user).first()
         return s.cedula
 
+    def get_profesores(self):
+        s = UserModel.query.filter_by(id_tipo=2).all()
+        return s
+
     def serialize(self):
         return {
             "cedula": self.cedula,

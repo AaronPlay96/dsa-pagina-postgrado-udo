@@ -10,6 +10,8 @@ dbuser = usermodel.UserModel
 dbpost = postgradomodel.PostgradoModel
 dbcontrol = controlmodel.ControlModel
 ser_control = control.Control
+dbcohorte = cohortemodel.CohorteModel
+dbmateria =materiamodel.MateriaModel
 
 admin_api = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -105,7 +107,7 @@ def control():
         return jsonify({"msg": "Missing JSON in request"}),
 
     control = controlmodel.ControlModel(request.get_json())
-    c_response = controlmodel.ControlModel.save(control)
+    c_response = controlmodel.ControlModel.save(control,request.json['id_profesor'],request.json['id_materia'])
     return jsonify({"respuesta": c_response}), 200
 
 
@@ -156,3 +158,33 @@ def habilitar_captura():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"})
     return jsonify({'respuesta' : dbcontrol.habilitar_captura(dbcontrol,request.json['id_control'])})
+
+@admin_api.route('/cohorte_get', methods=['GET','OPTIONS'])
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['GET'],headers=['Content-Type'])
+def obtener_cohortes():
+    if not request.is_json:
+        return jsonify({"msg": "Missing JSON in request"})
+    coho = dbcohorte.get_full_control(dbcohorte)
+    return jsonify(list=[{
+                            "id_cohorte": a[0].id_cohorte,
+                            "id_postgrado": a[0].id_postgrado,
+                            "year":a[0].year,
+                            "seccion": a[0].nombre,
+                            "especialidad": a[1].apellido
+                          }for a in coho]), 200
+
+@admin_api.route('/materias_get', methods=['GET','OPTIONS'])
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['GET'],headers=['Content-Type'])
+def obtener_materias():
+    if not request.is_json:
+        return jsonify({"msg": "Missing JSON in request"}),
+    mat =dbmateria.obtener_materias_by_postgrado(dbmateria)
+    return jsonify(list=[dbmateria.serialize() for dbmateria in mat]), 200
+
+@admin_api.route('/profesores_get', methods=['GET','OPTIONS'])
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['GET'],headers=['Content-Type'])
+def obtener_profesores():
+    if not request.is_json:
+        return jsonify({"msg": "Missing JSON in request"}),
+    prof = dbuser.get_profesores(dbuser)
+    return jsonify(list=[dbuser.serialize() for dbuser in prof]), 200

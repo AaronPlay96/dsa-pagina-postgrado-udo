@@ -1,4 +1,7 @@
 from . import db
+from . import *
+
+dbpostgrado = postgradomodel.PostgradoModel
 
 class CohorteModel(db.Model):
   """
@@ -35,3 +38,10 @@ class CohorteModel(db.Model):
   def obtener_ultimo(self):
     s = self.query.order_by('-id_cohorte').first()
     return s.id_cohorte
+
+  def obtener_cohortes(self):
+      s = db.session.query(self, dbpostgrado).join(dbpostgrado).filter_by(id_postgrado=dbpostgrado.id_postgrado).all()
+      if s:
+          return s
+      else:
+          return 'no hay cohortes registrados'
