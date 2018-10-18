@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CapturaService } from '../../services/captura.service';
 
 @Component({
   selector: 'app-captura',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CapturaComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private captura_serv: CapturaService) { }
+  lista;
   ngOnInit() {
+    this.captura_serv.obtener().subscribe(
+      (data: any) => {
+        this.lista = data;
+        console.log(this.lista);
+      },
+      (error: any) => { console.log('error ' + error); }
+    );
   }
 
 }

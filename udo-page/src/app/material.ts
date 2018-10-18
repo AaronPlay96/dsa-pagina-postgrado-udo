@@ -6,6 +6,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCardModule} from '@angular/material/card';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material';
+import {MatTableModule} from '@angular/material/table';
+
 
 
 
@@ -18,7 +22,10 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTableModule
   ],
   exports: [
     MatButtonModule,
@@ -28,7 +35,12 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTableModule
+  ],
+  providers: [
   ],
 })
 export class MaterialModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Loginfo } from '../../services/loginfo';
 import { LoginService } from '../../services/login.service';
+import { LoginServiceService } from '../../services/login-service.service';
 
 @Component({
   selector: 'app-login-form',
@@ -11,7 +12,8 @@ import { LoginService } from '../../services/login.service';
 
 export class LoginFormComponent implements OnInit {
   login = new Loginfo('', '', 0);
-  constructor(private router: Router, private loginserv: LoginService) { }
+  message: string;
+  constructor(private router: Router, private loginserv: LoginService, private data_serv: LoginServiceService) { }
   options = [
     { name: 'Estudiante', value: 1 },
     { name: 'Profesor', value: 2 },
@@ -24,11 +26,14 @@ export class LoginFormComponent implements OnInit {
     this.loginserv.login(this.login).subscribe(
       (data: any) => {
         // log the employee object after the post is completed
-        console.log(data);
-        form.reset();
-        if (this.selectedOption === 'Estudiante') {
+        console.log(data.cedula);
+        this.message = data.cedula;
+        this.data_serv.currentMessage.subscribe(message => this.message = message);
+        this.data_serv.changeMessage(data.cedula);
+        console.log('login ' + this.login.type);
+        if (this.login.type === 1) {
           this.router.navigate(['/student']);
-        } else if (this.selectedOption === 'Profesor') {
+        } else if (this.login.type === 2) {
           this.router.navigate(['/profesor']);
         } else {
           this.router.navigate(['/admin']);

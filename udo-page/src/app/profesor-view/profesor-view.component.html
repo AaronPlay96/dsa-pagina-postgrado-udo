@@ -1,16 +1,13 @@
-<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
-  <div class="container">
-      <a class="navbar-brand">
-        <span><img src = "logo_udo.png" class = "logo"></span>  
-        Postgrado UDO Profesor</a>
-      <ul class="nav navbar-nav" routerLinkActive="active">
-          <li class="nav-item" class="active"><a class="nav-link" routerLink="home">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="cargaNotas">Carga de notas</a></li>
-          <li class="nav-item2"><a class="nav-link" routerLink="">Salir</a></li>
-          <li class="nav-item2"><a class="nav-link" routerLink="ajustes">Ajustes</a></li>
-      </ul>
-  </div>
-</nav>
+<mat-toolbar>
+  <mat-toolbar-row>
+      <span><img mat-image src="logo_udo.png" class="logo"></span>
+      <span><mat-label class="titulo">Postgrado UDO Profesor</mat-label></span>
+      <button mat-button class="nav-link" routerLink="home">Inicio</button>
+      <button mat-button class="nav-link" routerLink="cargaNotas">Calificaciones</button>
+      <span class="example-fill-remaining-space"></span>
+      <button mat-button class="nav-link" routerLink="">Salir</button>
+  </mat-toolbar-row>
+</mat-toolbar>
 
 <router-outlet></router-outlet>
 

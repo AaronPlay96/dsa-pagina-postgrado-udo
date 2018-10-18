@@ -1,8 +1,38 @@
-<section>
-  <h1>Carga de Notas</h1>
-  <ul class="materias">
-    <li *ngFor="let m of materias">
-      <a>{{m}}</a>
-    </li>
-  </ul>
-</section>
+<mat-card class="home-card">
+  <h1>Captura de calificaciones</h1>
+  <div class="stepper">
+    <mat-horizontal-stepper linear="true" #stepper>
+      <mat-step [stepControl]="materiasFormGroup" [completed]="false">
+        <form [formGroup]="materiasFormGroup">
+          <mat-form-field class="materiasFormGroup">
+            <mat-label>Materias</mat-label>
+            <mat-select formControlName="id_cohorte" name="usertype" required>
+              <mat-option *ngFor="let lista of lista" [value]="lista.id_cohorte">
+                {{lista.nombre_materia}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>  
+          <div class="next">
+              <button mat-button color="primary" (click)="pedirEstudiantes()">Siguiente</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="estudiantesFormGroup">
+        <form [formGroup]="estudiantesFormGroup">
+          <mat-form-field *ngFor="let est of estudiantes">
+        
+              <mat-label>{{est.nombre_est}}</mat-label>
+            
+              <mat-label>{{est.apellido_est}}</mat-label>
+            
+              <mat-label>{{est.cedula}}</mat-label>
+           
+              <mat-label for="nota">Calificacion</mat-label>
+              <input matInput id="nota" placeholder="Ingrese calificacion" required>
+            
+          </mat-form-field>
+        </form>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+</mat-card>

@@ -1,3 +1,86 @@
 <mat-card class="apertura-card">
   <h1>Apertura de cohorte</h1>
+  <div class="stepper">
+      <mat-horizontal-stepper linear="true" #stepper>
+        <mat-step [stepControl]="cohorteFormGroup" [completed]="false">
+            <form [formGroup]="cohorteFormGroup">
+                <mat-form-field class="especialidad">
+                  <mat-label>Seleccione especialidad</mat-label>
+                  <mat-select formControlName="id_postgrado" name="Especialidad" required>
+                    <mat-option *ngFor="let lp of list_post" [value]="lp.id_postgrado">
+                      {{lp.especialidad}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Fecha de inicio</mat-label>
+                  <input matInput [matDatepicker]="picker"
+                    formControlName="year" placeholder="MM-DD-AAAA">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Seccion</mat-label>
+                  <input matInput formControlName="seccion" placeholder="Ingrese la seccion">
+                </mat-form-field>
+                <div class="next">
+                    <button mat-button color="primary" (click)="crearCohorte()">Siguiente</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="estudiantesFormGroup" [completed]="false">
+          <ng-template matStepLabel>Incripcion de estudiantes</ng-template>
+          <div class="add-estudiante-label">  
+              <mat-label>Seleccione Estudiantes a inscribir</mat-label>   
+          </div>
+          <div class="container">  
+              <table mat-table [dataSource]="datasource" [formGroup]="estudiantesFormGroup">
+
+                <!-- Checkbox Column -->
+                <ng-container matColumnDef="select">
+                  <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                  </th>
+                  <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(row) : null"
+                                  [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                  </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                  <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="lastname">
+                  <th mat-header-cell *matHeaderCellDef> Apellido </th>
+                  <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="cedula">
+                  <th mat-header-cell *matHeaderCellDef> Cedula </th>
+                  <td mat-cell *matCellDef="let element"> {{element.cedula}} </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                    (click)="selection.toggle(row)">
+                </tr>
+              </table>
+
+              <button class="lista-button" mat-raised-button type="submit" color="primary" 
+                (click)="inscribirEstudiates()" [disabled]="!selection.selected.length > 0">Guardar</button>
+                <mat-label class="respuesta">{{respuesta}}</mat-label> 
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+  <div class=cohorte-div>
+    
+  </div>
 </mat-card>

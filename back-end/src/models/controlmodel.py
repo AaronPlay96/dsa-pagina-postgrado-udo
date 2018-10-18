@@ -1,5 +1,5 @@
 from . import db
-from src.models import materiamodel
+from src.models import materiamodel, cohortemodel, usermodel
 
 dbmateria = materiamodel.MateriaModel
 
@@ -52,9 +52,7 @@ class ControlModel(db.Model):
         return s
 
     def get_control_by_profesor_id(self,id):
-        s = db.session.query(self,dbmateria).join(dbmateria).filter_by(id_profesor=id).filter_by(captura=True).all()
-        if s:
-            return s
-        else:
-            return 'no hay materias habilitadas para la captura de la nota'
+        s = db.session.query(self,dbmateria).filter_by(id_profesor=id).filter_by(captura=True).join(dbmateria).all()
+        return s
+
 

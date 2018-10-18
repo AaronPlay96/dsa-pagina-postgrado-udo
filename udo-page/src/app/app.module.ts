@@ -10,6 +10,13 @@ import {HttpClientModule} from '@angular/common/http';
 import { LoginService } from './services/login.service';
 import { CrearpostgradoService } from './services/Crearpostgrado.service';
 import { RegistrarService } from './services/registrar.service';
+import { AperturaService } from './services/apertura.service';
+import { LoginServiceService } from './services/login-service.service';
+import { CapturaService } from './services/captura.service';
+/*import { MAT_DATE_FORMATS } from '@angular/material';
+import { APP_DATE_FORMATS } from './date';
+import { AppDateAdapter } from './date';*/
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './login/header/header.component';
@@ -27,7 +34,7 @@ import { RegistroComponent} from './admin-view/registro/registro.component';
 import { AjustesPostComponent } from './admin-view/ajustes-post/ajustes-post.component';
 import { AperturaComponent } from './admin-view/apertura/apertura.component';
 import { CapturaComponent} from './admin-view/captura/captura.component';
-
+import { ControlComponent } from './admin-view/control/control.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent},
@@ -48,6 +55,7 @@ const appRoutes: Routes = [
       { path: 'registro', component: RegistroComponent },
       { path: 'ajustes_post', component: AjustesPostComponent },
       { path: 'apertura', component: AperturaComponent },
+      { path: 'control', component: ControlComponent },
       { path: 'captura', component: CapturaComponent }
     ]
   }
@@ -70,7 +78,8 @@ const appRoutes: Routes = [
     RegistroComponent,
     AjustesPostComponent,
     AperturaComponent,
-    CapturaComponent
+    CapturaComponent,
+    ControlComponent
   ],
   imports: [
     HttpModule,
@@ -81,7 +90,14 @@ const appRoutes: Routes = [
     ),
     BrowserModule, FormsModule, BrowserAnimationsModule, MaterialModule, ReactiveFormsModule
   ],
-  providers: [LoginService, CrearpostgradoService, RegistrarService],
+  providers: [LoginService, CrearpostgradoService, RegistrarService, CapturaService, AperturaService, LoginServiceService
+    /*{
+      provide: DateAdapter, useClass: AppDateAdapter
+    },
+    {
+      provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
+    }*/
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

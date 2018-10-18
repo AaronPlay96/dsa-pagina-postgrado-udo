@@ -1,0 +1,24 @@
+.especialidad {
+    width: 300px;
+}
+
+.cohorte-div {
+    padding: 0px 250px;
+}
+
+mat-form-field {
+    margin: 20px;
+}
+
+table {
+    width: 100%;
+}
+
+.lista-button {
+    margin-top: 20px;
+}
+
+.respuesta {
+    margin-left: 70px;
+    color: #3f51b5;
+}

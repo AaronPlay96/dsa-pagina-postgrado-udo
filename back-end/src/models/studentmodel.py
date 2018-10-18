@@ -40,7 +40,7 @@ class StudentModel(db.Model):
         return {'respuesta' : 'el estudiante aun no pertenece a un cohorte'}
 
   def obtener_estudiante_by_cohorte(self,id):
-      s = db.session.query(self,dbuser).join(dbuser).filter_by(id_cohorte=id).all()
+      s = db.session.query(self,dbuser).filter_by(id_cohorte=id).join(dbuser).all()
       return s
 
 

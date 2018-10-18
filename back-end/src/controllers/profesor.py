@@ -9,6 +9,7 @@ from src import config
 dbuser = usermodel.UserModel
 dbpost = postgradomodel.PostgradoModel
 dbcontrol = controlmodel.ControlModel
+dbestu = studentmodel.StudentModel
 ser_control = control.Control
 
 profesor_api = Blueprint('profesor', __name__, url_prefix='/profesor')
@@ -29,8 +30,8 @@ def registrar_notas():
 
     return jsonify({"respuesta": 'notas registradas'}), 200
 
-@profesor_api.route('/control', methods=['GET','OPTIONS'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['GET'],headers=['Content-Type'])
+@profesor_api.route('/control', methods=['POST','OPTIONS'])
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def obtener_control():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}),
@@ -43,12 +44,12 @@ def obtener_control():
         "nombre_materia": a[1].nombre
     } for a in con]), 200
 
-@profesor_api.route('/estudiante', methods=['GET','OPTIONS'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['GET'],headers=['Content-Type'])
+@profesor_api.route('/estudiante', methods=['POST','OPTIONS'])
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def obtener_estudiantes_materia():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}),
-    est = dbcontrol.get_control_by_profesor_id(dbcontrol,request.json['id_profesor'])
+    est = dbestu.obtener_estudiante_by_cohorte(dbestu, request.json['id_cohorte'])
     return jsonify(list=[{
         "id_estudiante": a[0].id_estudiante,
         "cedula" : a[1].cedula,
