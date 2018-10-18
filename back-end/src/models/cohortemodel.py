@@ -1,5 +1,5 @@
 from . import db
-from . import *
+from src.models import postgradomodel
 
 dbpostgrado = postgradomodel.PostgradoModel
 

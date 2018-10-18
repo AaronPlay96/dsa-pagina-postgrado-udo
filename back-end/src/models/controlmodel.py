@@ -1,5 +1,5 @@
 from . import db
-from src.models import cohortemodel, materiamodel, usermodel
+from src.models import materiamodel
 
 dbmateria = materiamodel.MateriaModel
 
