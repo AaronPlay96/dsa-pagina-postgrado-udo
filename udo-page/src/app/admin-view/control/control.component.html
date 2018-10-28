@@ -1,3 +1,47 @@
 <mat-card class="captura-card">
   <h1>Control de materias</h1>
+  <form [formGroup]="controlFormGroup" (ngSubmit)="crearControl()">
+    <mat-form-field class="cohorte">
+      <mat-label>Seleccione una cohorte</mat-label>
+      <mat-select formControlName="id_materia" [(value)]="selected"  name="Cohorte" required (ngModelChange)="obtener_materias()" >
+          <mat-option *ngFor="let lp of list_cohorte" [value]="lp"  >
+            {{lp.especialidad}} - Seccion: {{lp.seccion}}
+          </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Seleccione una materia</mat-label>
+      <mat-select formControlName="id_materia" name="Materia" required (ngModelChange)="obtener_profesores()">
+          <mat-option *ngFor="let lp of list_materias" [value]="lp.id_materia" >
+            {{lp.nombre}} - Codigo: {{lp.codigo}}
+          </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Seleccione al profesor</mat-label>
+        <mat-select formControlName="id_profesor" name="Materia" required>
+            <mat-option *ngFor="let lp of list_prof" [value]="lp.cedula">
+              {{lp.nombre}} {{lp.apellido}} {{lp.cedula}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Fecha de inicio</mat-label>
+        <input matInput [matDatepicker]="pickeri"
+          formControlName="fecha_inicio" placeholder="MM-DD-AAAA">
+        <mat-datepicker-toggle matSuffix [for]="pickeri"></mat-datepicker-toggle>
+        <mat-datepicker #pickeri></mat-datepicker>
+      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Fecha de fin</mat-label>
+      <input matInput [matDatepicker]="pickerf"
+        formControlName="fecha_fin" placeholder="MM-DD-AAAA">
+      <mat-datepicker-toggle matSuffix [for]="pickerf"></mat-datepicker-toggle>
+      <mat-datepicker #pickerf></mat-datepicker>
+    </mat-form-field>
+    
+      <button mat-raised-button type="submit" color="primary" [disabled]="!controlFormGroup.valid">Guardar</button>
+      <span ><mat-label color="pimary" class="respuesta">{{respuesta}}</mat-label></span>
+    
+  </form>
 </mat-card>

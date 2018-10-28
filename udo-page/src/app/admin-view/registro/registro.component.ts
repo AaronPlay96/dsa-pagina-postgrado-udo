@@ -15,6 +15,7 @@ export class RegistroComponent {
   tipo: string = null;
   selectedOption = null;
   title = '';
+  respuesta = 'hola ngioerngvi4rnfiorfni ';
   passwordConfirmationFailed = false;
   passwordConfirmationTxt = '';
   signup = new Registro('', '', '', '', '', '');
@@ -30,6 +31,8 @@ export class RegistroComponent {
     this.registrarserv.registro(this.signup).subscribe(
       (data: any) => {
         console.log(data);
+        this.respuesta = data.respuesta;
+        form.reset();
       },
       (error: any) => { console.log('error ' + error); }
     );

@@ -107,7 +107,7 @@ def control():
         return jsonify({"msg": "Missing JSON in request"}),
 
     control = controlmodel.ControlModel(request.get_json())
-    c_response = controlmodel.ControlModel.save(control,request.json['id_profesor'],request.json['id_materia'])
+    c_response = controlmodel.ControlModel.save(control)
     return jsonify({"respuesta": c_response}), 200
 
 
@@ -138,12 +138,14 @@ def obtener_control_materias():
     return jsonify(list=[{
                             "id_control": a[0].id_control,
                             "id_cohorte": a[0].id_cohorte,
+                            "seccion": a[1].seccion,
                             "materia": a[0].id_materia,
                             "id_profesor": a[0].id_profesor,
                             "fecha_inicio": a[0].fecha_inicio,#json.dumps(a[0].fecha_inicio, indent=4, sort_keys=True, default=str),
                             "fecha_fin":a[0].fecha_inicio, #json.dumps(a[0].fecha_fin, indent=4, sort_keys=True, default=str),
                             "captura": a[0].captura,
                             "id_postgrado": a[1].id_postgrado,
+                            "especialidad": dbpost.get_especialidad(dbpost,a[1].id_postgrado).especialidad,
                             "year":a[1].year,
                             "nombre_materia": a[3].nombre,
                             "creditos": a[3].creditos,
@@ -152,33 +154,33 @@ def obtener_control_materias():
                             "apellido": a[2].apellido
                           }for a in cont]), 200
 
-@admin_api.route('/control', methods=['PUT','OPTIONS'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['PUT'],headers=['Content-Type'])
+@admin_api.route('/control_captura', methods=['POST','OPTIONS'])
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'], headers=['Content-Type'])
 def habilitar_captura():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"})
-    return jsonify({'respuesta' : dbcontrol.habilitar_captura(dbcontrol,request.json['id_control'])})
+    return jsonify({'respuesta': dbcontrol.habilitar_captura(dbcontrol, request.json['id_control'])})
 
 @admin_api.route('/cohorte_get', methods=['GET','OPTIONS'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['GET'],headers=['Content-Type'])
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['GET'], headers=['Content-Type'])
 def obtener_cohortes():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"})
-    coho = dbcohorte.get_full_control(dbcohorte)
+    coho = dbcohorte.obtener_cohortes(dbcohorte)
     return jsonify(list=[{
                             "id_cohorte": a[0].id_cohorte,
                             "id_postgrado": a[0].id_postgrado,
                             "year":a[0].year,
-                            "seccion": a[0].nombre,
-                            "especialidad": a[1].apellido
+                            "seccion": a[0].seccion,
+                            "especialidad": a[1].especialidad
                           }for a in coho]), 200
 
-@admin_api.route('/materias_get', methods=['GET','OPTIONS'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['GET'],headers=['Content-Type'])
+@admin_api.route('/materias_get', methods=['POST','OPTIONS'])
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
 def obtener_materias():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}),
-    mat =dbmateria.obtener_materias_by_postgrado(dbmateria)
+    mat =dbmateria.obtener_materias_by_postgrado(dbmateria, request.json["id_postgrado"])
     return jsonify(list=[dbmateria.serialize() for dbmateria in mat]), 200
 
 @admin_api.route('/profesores_get', methods=['GET','OPTIONS'])

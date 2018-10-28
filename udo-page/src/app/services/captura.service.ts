@@ -30,5 +30,11 @@ export class CapturaService {
     const url = 'http://localhost:5000/';
     return this.http.post(url + 'profesor/estudiante', json, httpOptions);
   }
+  cargarnota(message: any) {
+    const json = JSON.stringify(message);
+    console.log('json ' + json);
+    const url = 'http://localhost:5000/';
+    return this.http.post(url + 'profesor/notas', json, httpOptions);
+  }
 }
 

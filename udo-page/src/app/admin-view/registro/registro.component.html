@@ -55,10 +55,10 @@
           </mat-option>
         </mat-select>
     </mat-form-field>-->
-    
-    <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid || passwordConfirmationFailed">Enviar</button>
-    
-   
+    <div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid || passwordConfirmationFailed">Enviar</button>
+      <mat-label class="respuesta">{{respuesta}}</mat-label> 
+    </div>
 
   </form>
 </mat-card>

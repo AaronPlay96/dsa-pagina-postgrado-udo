@@ -34,13 +34,9 @@ class ControlModel(db.Model):
     def __repr(self):
         return '<id_control {}>'.format(self.id_control)
 
-    def save(self,coh,mat):
-        s = db.session.query(self).filter_by(id_cohorte=coh).filter_by(id_materia=mat).count()
-        if s > 0:
-            return "sta materia ya esta en curso o fue impartida en este cohorte"
-        else:
-            db.session.add(self)
-            db.session.commit()
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
         return "control registrado"
 
     def get_control(self):
@@ -55,4 +51,12 @@ class ControlModel(db.Model):
         s = db.session.query(self,dbmateria).filter_by(id_profesor=id).filter_by(captura=True).join(dbmateria).all()
         return s
 
-
+    def habilitar_captura(self, id):
+        if db.session.query(self).filter_by(id_control=id).first().captura == True:
+            db.session.query(self).filter_by(id_control=id).update({"captura":False}, synchronize_session=False)
+            db.session.commit()
+            return "Inhabilitada captura de nota para la materia"
+        else:
+            db.session.query(self).filter_by(id_control=id).update({"captura":True}, synchronize_session=False)
+            db.session.commit()
+            return "Habilitada captura de nota para la materia"

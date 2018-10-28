@@ -27,9 +27,9 @@ export class LoginFormComponent implements OnInit {
       (data: any) => {
         // log the employee object after the post is completed
         console.log(data.cedula);
-        this.message = data.cedula;
+        this.message = data;
         this.data_serv.currentMessage.subscribe(message => this.message = message);
-        this.data_serv.changeMessage(data.cedula);
+        this.data_serv.changeMessage(data);
         console.log('login ' + this.login.type);
         if (this.login.type === 1) {
           this.router.navigate(['/student']);

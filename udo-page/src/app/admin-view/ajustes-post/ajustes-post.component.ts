@@ -15,6 +15,7 @@ export class AjustesPostComponent implements OnInit {
   myForm: FormGroup;
   existe = false;
   id_ultimo: number;
+  respuesta: string;
   constructor(private formBuilder: FormBuilder, private crearserv: CrearpostgradoService) { }
 
   @ViewChild('stepper') stepper: MatStepper;
@@ -44,6 +45,7 @@ export class AjustesPostComponent implements OnInit {
     this.crearserv.crearPensum(this.myForm.value).subscribe(
       (data: any) => {
         console.log(data);
+        this.respuesta = data.respuesta;
       },
       (error: any) => { console.log('error ' + error); this.existe = true; }
     );

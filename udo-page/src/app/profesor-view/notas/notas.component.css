@@ -1,3 +1,11 @@
 .label {
     margin: 20px;
 }
+
+table {
+    width: 100%;
+}
+
+.nota {
+    width: 50%;
+}

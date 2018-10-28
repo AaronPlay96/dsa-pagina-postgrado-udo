@@ -6,8 +6,8 @@
         <form [formGroup]="materiasFormGroup">
           <mat-form-field class="materiasFormGroup">
             <mat-label>Materias</mat-label>
-            <mat-select formControlName="id_cohorte" name="usertype" required>
-              <mat-option *ngFor="let lista of lista" [value]="lista.id_cohorte">
+            <mat-select formControlName="id_cohorte" [(value)]="selected" name="usertype" required>
+              <mat-option *ngFor="let lista of lista" [value]="lista">
                 {{lista.nombre_materia}}
               </mat-option>
             </mat-select>
@@ -18,20 +18,62 @@
         </form>
       </mat-step>
       <mat-step [stepControl]="estudiantesFormGroup">
-        <form [formGroup]="estudiantesFormGroup">
+        <!--<form [formGroup]="estudiantesFormGroup">
           <mat-form-field *ngFor="let est of estudiantes">
         
-              <mat-label>{{est.nombre_est}}</mat-label>
+              <span>{{est.nombre_est}}</span>
             
-              <mat-label>{{est.apellido_est}}</mat-label>
+              <span>{{est.apellido_est}}</span>
             
-              <mat-label>{{est.cedula}}</mat-label>
+              <span>{{est.cedula}}</span>
            
               <mat-label for="nota">Calificacion</mat-label>
               <input matInput id="nota" placeholder="Ingrese calificacion" required>
             
           </mat-form-field>
-        </form>
+        </form>-->
+        <table mat-table [dataSource]="datasource" [formGroup]="estudiantesFormGroup">
+            
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef> Calificacion
+              </th>
+            <div formArrayName="list"> 
+              <td mat-cell *matCellDef="let row; let i = index" > 
+              
+                <div [formGroupName]="i">
+                  <input matInput formControlName="nota" class="nota" id="nota" type="number" placeholder="Ingrese calificacion" required>
+                </div>
+              
+              </td>
+            </div>
+            </ng-container>
+          
+            <ng-container matColumnDef="id" style.visibity="false" >
+              <th mat-header-cell *matHeaderCellDef> id </th>
+              <td mat-cell *matCellDef="let element"> {{element.id_estudiante}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre_est}} </td>
+              </ng-container>
+          
+            <ng-container matColumnDef="apellido">
+              <th mat-header-cell *matHeaderCellDef> Apellido </th>
+              <td mat-cell *matCellDef="let element"> {{element.apellido_est}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="cedula">
+              <th mat-header-cell *matHeaderCellDef> Cedula </th>
+              <td mat-cell *matCellDef="let element"> {{element.cedula}} </td>
+            </ng-container> 
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <button mat-button color="accent" (click)="cargarnota()" [disabled]="!estudiantesFormGroup.valid">Cargar notas</button>
+          <mat-label class="respuesta">{{respuesta}}</mat-label>
       </mat-step>
     </mat-horizontal-stepper>
   </div>

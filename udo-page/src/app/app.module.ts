@@ -13,6 +13,7 @@ import { RegistrarService } from './services/registrar.service';
 import { AperturaService } from './services/apertura.service';
 import { LoginServiceService } from './services/login-service.service';
 import { CapturaService } from './services/captura.service';
+import { ControlService } from './services/control.service';
 /*import { MAT_DATE_FORMATS } from '@angular/material';
 import { APP_DATE_FORMATS } from './date';
 import { AppDateAdapter } from './date';*/
@@ -35,10 +36,18 @@ import { AjustesPostComponent } from './admin-view/ajustes-post/ajustes-post.com
 import { AperturaComponent } from './admin-view/apertura/apertura.component';
 import { CapturaComponent} from './admin-view/captura/captura.component';
 import { ControlComponent } from './admin-view/control/control.component';
+import { HistoricoComponent } from './student-view/historico/historico.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent},
-  { path: 'student', component: StudentViewComponent },
+  { path: 'student',
+    component: StudentViewComponent,
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full'},
+      { path: 'home', component: HomeComponent },
+      { path: 'historico', component: HistoricoComponent },
+    ]
+  },
   { path: 'profesor',
     component: ProfesorViewComponent,
     children: [
@@ -79,7 +88,8 @@ const appRoutes: Routes = [
     AjustesPostComponent,
     AperturaComponent,
     CapturaComponent,
-    ControlComponent
+    ControlComponent,
+    HistoricoComponent
   ],
   imports: [
     HttpModule,
@@ -90,7 +100,14 @@ const appRoutes: Routes = [
     ),
     BrowserModule, FormsModule, BrowserAnimationsModule, MaterialModule, ReactiveFormsModule
   ],
-  providers: [LoginService, CrearpostgradoService, RegistrarService, CapturaService, AperturaService, LoginServiceService
+  providers: [
+    LoginService,
+    CrearpostgradoService,
+    RegistrarService,
+    CapturaService,
+    AperturaService,
+    LoginServiceService,
+    ControlService
     /*{
       provide: DateAdapter, useClass: AppDateAdapter
     },

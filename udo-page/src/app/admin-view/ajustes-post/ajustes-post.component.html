@@ -50,6 +50,7 @@
               </div>
               <button mat-button color="accent" (click)="addMateria()" [disabled]="!myForm.valid">Agregar Materia</button>
               <button mat-button type="submit" color="primary" [disabled]="!myForm.valid">Guardar</button>
+              <mat-label class="respuesta">{{respuesta}}</mat-label> 
           </form>
         </div>
       </mat-step>

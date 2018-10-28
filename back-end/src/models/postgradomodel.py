@@ -41,4 +41,6 @@ class PostgradoModel(db.Model):
       'id_postgrado': self.id_postgrado,
       'especialidad': self.especialidad
     }
+  def get_especialidad(self,id):
+    return self.query.filter_by(id_postgrado=id).first()
 

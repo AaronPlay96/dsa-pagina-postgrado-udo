@@ -47,6 +47,7 @@ class MateriaModel(db.Model):
       'id_postgrado': self.id_postgrado,
       'nombre': self.nombre,
       'codigo': self.codigo,
-      'creditos': self.creditos
+      'creditos': self.creditos,
+      'id_materia': self.id_materia
     }
 

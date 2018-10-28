@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginServiceService } from '../../services/login-service.service';
 
 @Component({
   // selector: 'app-home',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  nombre = 'Shaker Chabarekh';
-  constructor() {  }
+  message;
+  constructor(private data_serv: LoginServiceService) {  }
 
   ngOnInit() {
+    this.data_serv.currentMessage.subscribe(message => this.message = message);
   }
 
 }

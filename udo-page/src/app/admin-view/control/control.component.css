@@ -1,0 +1,9 @@
+mat-form-field, button {
+    width: 30%;
+    margin: 20px;
+}
+
+.respuesta {
+    color: #3f51b5;
+    width: 100%;
+}

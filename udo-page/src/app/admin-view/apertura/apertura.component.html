@@ -30,10 +30,10 @@
         </mat-step>
         <mat-step [stepControl]="estudiantesFormGroup" [completed]="false">
           <ng-template matStepLabel>Incripcion de estudiantes</ng-template>
-          <div class="add-estudiante-label">  
-              <mat-label>Seleccione Estudiantes a inscribir</mat-label>   
-          </div>
           <div class="container">  
+              <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar por nombre, apellido o cedula">
+              </mat-form-field>
               <table mat-table [dataSource]="datasource" [formGroup]="estudiantesFormGroup">
 
                 <!-- Checkbox Column -->

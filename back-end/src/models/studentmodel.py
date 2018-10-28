@@ -35,9 +35,9 @@ class StudentModel(db.Model):
   def obtener_id_estudiante(self,id):
       s = db.session.query(self,dbuser).join(dbuser).filter_by(cedula=id).first()
       if s:
-        return {'id_estudiante' : s.id_estudiante}
+        return {'id_estudiante' : s[0].id_estudiante}
       else:
-        return {'respuesta' : 'el estudiante aun no pertenece a un cohorte'}
+        return {'respuesta' : 'El estudiante aun no pertenece a un cohorte'}
 
   def obtener_estudiante_by_cohorte(self,id):
       s = db.session.query(self,dbuser).filter_by(id_cohorte=id).join(dbuser).all()

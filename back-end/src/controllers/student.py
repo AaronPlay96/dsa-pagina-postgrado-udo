@@ -30,4 +30,4 @@ def obtener_estudiante():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"})
     est = dbstudent.obtener_id_estudiante(dbstudent,request.json['cedula'])
-    return jsonify (est)
+    return jsonify(est)

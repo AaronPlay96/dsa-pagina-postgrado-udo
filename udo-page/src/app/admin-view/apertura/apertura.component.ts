@@ -52,6 +52,9 @@ export class AperturaComponent implements OnInit {
       (error: any) => { console.log('error ' + error); }
     );
   }
+  applyFilter(filterValue: string) {
+    this.datasource.filter = filterValue.trim().toLowerCase();
+  }
   crearCohorte() {
     this.apert_serv.crearCohorte(this.cohorteFormGroup.value).subscribe(
       (data: any) => {

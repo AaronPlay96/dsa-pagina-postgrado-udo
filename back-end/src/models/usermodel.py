@@ -62,7 +62,7 @@ class UserModel(db.Model):
 
     def obtener_cedula(self,user):
         s = UserModel.query.filter_by(usuario=user).first()
-        return s.cedula
+        return s
 
     def get_profesores(self):
         s = UserModel.query.filter_by(id_tipo=2).all()

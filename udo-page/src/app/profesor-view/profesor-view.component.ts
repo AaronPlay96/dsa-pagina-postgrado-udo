@@ -7,7 +7,7 @@ import { LoginServiceService } from '../services/login-service.service';
   styleUrls: ['./profesor-view.component.css']
 })
 export class ProfesorViewComponent implements OnInit {
-  message: string;
+  message;
   constructor(private data: LoginServiceService) { }
   ngOnInit() {
     this.data.currentMessage.subscribe(message => this.message = message);
