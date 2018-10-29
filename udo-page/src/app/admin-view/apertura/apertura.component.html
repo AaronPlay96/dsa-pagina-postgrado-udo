@@ -3,8 +3,9 @@
   <div class="stepper">
       <mat-horizontal-stepper linear="true" #stepper>
         <mat-step [stepControl]="cohorteFormGroup" [completed]="false">
+            <ng-template matStepLabel>Creacion de cohorte</ng-template>
             <form [formGroup]="cohorteFormGroup">
-                <mat-form-field class="especialidad">
+                <mat-form-field>
                   <mat-label>Seleccione especialidad</mat-label>
                   <mat-select formControlName="id_postgrado" name="Especialidad" required>
                     <mat-option *ngFor="let lp of list_post" [value]="lp.id_postgrado">
@@ -80,7 +81,4 @@
         </mat-step>
       </mat-horizontal-stepper>
     </div>
-  <div class=cohorte-div>
-    
-  </div>
 </mat-card>

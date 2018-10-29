@@ -13,6 +13,7 @@ import { LoginServiceService } from '../../services/login-service.service';
 export class LoginFormComponent implements OnInit {
   login = new Loginfo('', '', 0);
   message: string;
+  respuesta;
   constructor(private router: Router, private loginserv: LoginService, private data_serv: LoginServiceService) { }
   options = [
     { name: 'Estudiante', value: 1 },
@@ -39,7 +40,7 @@ export class LoginFormComponent implements OnInit {
           this.router.navigate(['/admin']);
         }
       },
-      (error: any) => { console.log(error); }
+      (error: any) => { this.respuesta = error.error.text + this.options[this.login.type - 1].name; }
     );
     console.log(form.value);
   }

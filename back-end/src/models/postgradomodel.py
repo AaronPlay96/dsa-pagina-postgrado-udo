@@ -26,7 +26,7 @@ class PostgradoModel(db.Model):
   def save(self):
     db.session.add(self)
     db.session.commit()
-    return 'postgrado registrado'
+    return 'Postgrado registrado'
 
   def obtener_ultimo(self):
     s = self.query.order_by('-id_postgrado').first()

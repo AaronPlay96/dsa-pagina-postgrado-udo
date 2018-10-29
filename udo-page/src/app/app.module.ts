@@ -37,6 +37,7 @@ import { AperturaComponent } from './admin-view/apertura/apertura.component';
 import { CapturaComponent} from './admin-view/captura/captura.component';
 import { ControlComponent } from './admin-view/control/control.component';
 import { HistoricoComponent } from './student-view/historico/historico.component';
+import { PDFcreatorComponent } from './pdfcreator/pdfcreator.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent},
@@ -89,7 +90,8 @@ const appRoutes: Routes = [
     AperturaComponent,
     CapturaComponent,
     ControlComponent,
-    HistoricoComponent
+    HistoricoComponent,
+    PDFcreatorComponent
   ],
   imports: [
     HttpModule,

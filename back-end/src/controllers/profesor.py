@@ -28,7 +28,7 @@ def registrar_notas():
         }
         notamodel.NotaModel.save(notamodel.NotaModel(var))
 
-    return jsonify({"respuesta": 'notas registradas'}), 200
+    return jsonify({"respuesta": 'Notas registradas'}), 200
 
 @profesor_api.route('/control', methods=['POST','OPTIONS'])
 @crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])

@@ -31,13 +31,13 @@ def login():
     user = usermodel.UserModel.get_user_by_email(data.get('username'))
 
     if not user:
-        return 'datos invalidos'
+        return 'Datos invalidos'
 
     if not user.check_hash(data.get('password')):
-        return 'datos invalidos'
+        return 'Datos invalidos'
 
-    if not usermodel.UserModel.verificar_tipo(usermodel.UserModel,tipo,username,password):
-        return "usted no tiene acceso al sistema como "
+    if not usermodel.UserModel.verificar_tipo(usermodel.UserModel, tipo, username, password):
+        return "Usted no tiene acceso al sistema como "
 
     ced = usermodel.UserModel.obtener_cedula(usermodel.UserModel,username)
 

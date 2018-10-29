@@ -17,7 +17,7 @@
       <mat-step [stepControl]="myForm" [completed]="false">
         <ng-template matStepLabel>Pensum</ng-template>
         <div class="add-materia-label">  
-            <mat-label>Agregar materias</mat-label>   
+            <mat-label>Agregar materias para {{firstFormGroup.value.especialidad}}</mat-label>   
         </div>
         <div class="container">  
           <form [formGroup]="myForm" novalidate (ngSubmit)="crearPensum()">

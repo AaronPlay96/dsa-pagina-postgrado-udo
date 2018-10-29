@@ -18,21 +18,10 @@
         </form>
       </mat-step>
       <mat-step [stepControl]="estudiantesFormGroup">
-        <!--<form [formGroup]="estudiantesFormGroup">
-          <mat-form-field *ngFor="let est of estudiantes">
-        
-              <span>{{est.nombre_est}}</span>
-            
-              <span>{{est.apellido_est}}</span>
-            
-              <span>{{est.cedula}}</span>
-           
-              <mat-label for="nota">Calificacion</mat-label>
-              <input matInput id="nota" placeholder="Ingrese calificacion" required>
-            
-          </mat-form-field>
-        </form>-->
-        <table mat-table [dataSource]="datasource" [formGroup]="estudiantesFormGroup">
+        <ng-template matStepLabel></ng-template>
+        <div id="toPDF">
+        <mat-label>Acta de calificaciones {{nombre_materia}}<br>Profesor: {{message.nombre}} {{message.apellido}}</mat-label>
+        <table mat-table [dataSource]="datasource"  [formGroup]="estudiantesFormGroup">
             
             <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
@@ -72,8 +61,11 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-          <button mat-button color="accent" (click)="cargarnota()" [disabled]="!estudiantesFormGroup.valid">Cargar notas</button>
-          <mat-label class="respuesta">{{respuesta}}</mat-label>
+        </div>
+          <div class="btnrsp">
+            <button mat-button color="accent" (click)="cargarnota()" [disabled]="!estudiantesFormGroup.valid">Cargar notas</button>
+            <mat-label class="respuesta">{{respuesta}}</mat-label>
+          </div>
       </mat-step>
     </mat-horizontal-stepper>
   </div>

@@ -11,6 +11,7 @@ export interface Control {
   nombre_materia: string;
   id_profesor: number;
   nombre: string;
+  apellido: string;
 }
 
 const initialSelection = [];

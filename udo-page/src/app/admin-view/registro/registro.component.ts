@@ -15,7 +15,7 @@ export class RegistroComponent {
   tipo: string = null;
   selectedOption = null;
   title = '';
-  respuesta = 'hola ngioerngvi4rnfiorfni ';
+  respuesta = '';
   passwordConfirmationFailed = false;
   passwordConfirmationTxt = '';
   signup = new Registro('', '', '', '', '', '');

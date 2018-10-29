@@ -76,7 +76,8 @@
     
 
     <button mat-raised-button color="primary" type="submit" [disabled]="!signinForm.valid">Iniciar sesion</button>
-    
-    <a class="olvideClave" mat-button>Olvide mi clave</a>
+    <div class="olvideClave">
+      <mat-label color="warn">{{respuesta}}</mat-label>
+    </div>
   </form>
 </mat-card>

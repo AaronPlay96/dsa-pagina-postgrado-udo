@@ -12,6 +12,7 @@ import { CrearpostgradoService } from '../../services/Crearpostgrado.service';
 })
 export class AjustesPostComponent implements OnInit {
   firstFormGroup: FormGroup;
+  nombre_post;
   myForm: FormGroup;
   existe = false;
   id_ultimo: number;
@@ -29,6 +30,7 @@ export class AjustesPostComponent implements OnInit {
     });
   }
   crearPostgrado() {
+    // this.nombre_post = this.firstFormGroup.value.especialidad;
     this.crearserv.crear(this.firstFormGroup.value).subscribe(
       (data: any) => {
         console.log(data);

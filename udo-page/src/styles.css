@@ -36,6 +36,12 @@ mat-toolbar{
     margin: 10px;
 }
 
+.respuesta {
+    color: #3f51b5;
+    margin-left: 20px;
+    width: 100%;
+}
+
 /*section {
     background: white;
     border-radius: 10px;

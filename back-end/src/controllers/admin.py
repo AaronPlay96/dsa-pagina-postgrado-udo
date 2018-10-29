@@ -17,7 +17,7 @@ admin_api = Blueprint('admin', __name__, url_prefix='/admin')
 
 
 @admin_api.route('/register', methods=['POST','OPTIONS'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'], headers=['Content-Type'])
 def register():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}),
@@ -27,7 +27,7 @@ def register():
 
 
 @admin_api.route('/postgrado', methods=['POST','OPTIONS'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'], headers=['Content-Type'])
 def postgrado():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}),
@@ -39,7 +39,7 @@ def postgrado():
 
 
 @admin_api.route('/cohorte', methods=['POST','OPTIONS'])
-@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'], headers=['Content-Type'])
 def cohorte():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"}),

@@ -2,7 +2,7 @@
     width: 300px;
     height: 400px;
     background: white;
-    color: grey;
+    /*color: grey;*/
     position: absolute;
     display: block;
     top: 55%;
@@ -27,6 +27,8 @@
 }
 
 .olvideClave {
+    text-align: center;
+    color: crimson;
     margin-top: 30px;
 }
 

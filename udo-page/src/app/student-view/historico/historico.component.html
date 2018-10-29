@@ -1,5 +1,7 @@
 <mat-card class=historico-card>
   <h1>Historico de calificaciones</h1>
+  <div id="toPDF">
+    <mat-label>Historico de calficaciones correspondiente a {{message.nombre}} {{message.apellido}}</mat-label>
   <table mat-table [dataSource]="datasource">
 
       <ng-container matColumnDef="nombre">
@@ -15,4 +17,6 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+  </div>
+  <button mat-raised-button (click)="guardarPDF()">Guardar PDF</button>
 </mat-card>

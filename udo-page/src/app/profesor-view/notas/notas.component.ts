@@ -5,6 +5,8 @@ import {SelectionModel } from '@angular/cdk/collections';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import {MatStepper} from '@angular/material';
 import {MatTableDataSource} from '@angular/material';
+import { ControlService } from 'src/app/services/control.service';
+import { PDFcreatorComponent } from '../../pdfcreator/pdfcreator.component';
 
 export class Idprof {
   id_profesor: string;
@@ -27,17 +29,23 @@ const allowMultiSelect = true;
   styleUrls: ['./notas.component.css']
 })
 export class NotasComponent implements OnInit {
-  message: string;
+  message;
   idprof = new Idprof();
   estudiantes;
   selected;
+  nombre_materia;
   respuesta;
+  PDF = new PDFcreatorComponent;
+
   materiasFormGroup: FormGroup;
   estudiantesFormGroup: FormGroup;
+
   datasource;
   displayedColumns: string[] = ['select', 'id', 'nombre', 'apellido', 'cedula'];
   selection = new SelectionModel<Estudiante>(allowMultiSelect, initialSelection);
+
   constructor(
+    private control_serv: ControlService,
     private captura_serv: CapturaService,
     private data_serv: LoginServiceService,
     private formBuilder: FormBuilder) { }
@@ -52,17 +60,19 @@ export class NotasComponent implements OnInit {
       ])
     });
     this.data_serv.currentMessage.subscribe(message => this.message = message);
-    console.log('cedula: ' + this.message);
-    this.idprof.id_profesor = this.message;
+    this.idprof.id_profesor = this.message.cedula;
     this.captura_serv.profesor_obtener(this.idprof).subscribe(
       (data: any) => {
         this.lista = data.list;
-        console.log(this.lista);
+        console.log(this.lista); // lista de materias
       },
       (error: any) => { console.log('error ' + error); }
     );
+    console.log(this.message);
   }
   pedirEstudiantes() {
+    console.log(this.selected);
+    this.nombre_materia = this.selected.nombre_materia;
     this.materiasFormGroup.controls['id_cohorte'].setValue(this.selected.id_cohorte);
     this.captura_serv.pedirEst(this.materiasFormGroup.value).subscribe(
       (data: any) => {
@@ -96,6 +106,15 @@ export class NotasComponent implements OnInit {
       (data: any) => {
         console.log(data);
         this.respuesta = data.respuesta;
+        this.control_serv.habilitar(this.selected.id_control).subscribe(
+          (data2: any) => {
+            console.log(data2);
+            // this.respuesta = data.respuesta;
+            this.stepper.previous();
+            this.PDF.captureScreen(document.getElementById('toPDF'));
+          },
+          (error: any) => { console.log('error ' + error); }
+        );
       },
       (error: any) => { console.log('error ' + error); }
     );

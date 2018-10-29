@@ -3,6 +3,7 @@ import { LoginServiceService } from '../../services/login-service.service';
 import { EstudianteService } from '../../services/estudiante.service';
 import {SelectionModel } from '@angular/cdk/collections';
 import {MatTableDataSource} from '@angular/material';
+import { PDFcreatorComponent } from 'src/app/pdfcreator/pdfcreator.component';
 
 
 export interface Historico {
@@ -26,6 +27,7 @@ export class HistoricoComponent implements OnInit {
   id_est;
   historico;
 
+  PDF = new PDFcreatorComponent;
   // Tabla
   datasource;
   displayedColumns: string[] = ['nombre', 'nota'];
@@ -52,5 +54,7 @@ export class HistoricoComponent implements OnInit {
       (error: any) => { console.log('error ' + error); }
     );
   }
-
+  guardarPDF() {
+    this.PDF.captureScreen(document.getElementById('toPDF'));
+  }
 }
