@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginServiceService } from '../services/login-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-view',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-view.component.css']
 })
 export class AdminViewComponent implements OnInit {
-
-  constructor() { }
+  message;
+  constructor(private data: LoginServiceService, private router: Router) { }
 
   ngOnInit() {
+    this.data.currentMessage.subscribe(message => this.message = message);
+    console.log(this.message);
+    if (this.message === 'default message') {
+      this.router.navigate(['']);
+    }
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginServiceService } from '../services/login-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profesor-view',
@@ -8,9 +9,12 @@ import { LoginServiceService } from '../services/login-service.service';
 })
 export class ProfesorViewComponent implements OnInit {
   message;
-  constructor(private data: LoginServiceService) { }
+  constructor(private data: LoginServiceService, private router: Router) { }
   ngOnInit() {
     this.data.currentMessage.subscribe(message => this.message = message);
     console.log('cedula: ' + this.message);
+    if (this.message === 'default message') {
+      this.router.navigate(['']);
+    }
   }
 }
