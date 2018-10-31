@@ -6,7 +6,7 @@
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>Nombre de Postgrado</ng-template>
           <mat-form-field class="nombre-field">
-            <input matInput placeholder="Ingrese nombre del curso de Postgrado" formControlName="especialidad" required>
+            <input matInput #input (keyup)="input.value=$event.target.value.toUpperCase()" placeholder="Ingrese nombre del curso de Postgrado" formControlName="especialidad" required>
             <mat-hint [hidden]="!existe" >Ya existe una especialidad con este nombre</mat-hint>
           </mat-form-field>
           <div class="next">

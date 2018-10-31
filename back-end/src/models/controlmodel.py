@@ -35,6 +35,11 @@ class ControlModel(db.Model):
         return '<id_control {}>'.format(self.id_control)
 
     def save(self):
+        coh = self.id_cohorte
+        mat = self.id_materia
+        s = ControlModel.query.filter_by(id_cohorte=coh,id_materia=mat).count()
+        if s > 0:
+            return "esta materia ya esta registrada para este cohorte"
         db.session.add(self)
         db.session.commit()
         return "control registrado"

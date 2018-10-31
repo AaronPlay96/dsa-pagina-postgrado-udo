@@ -31,6 +31,11 @@ class CohorteModel(db.Model):
     return '<id_cohorte {}>'.format(self.id_cohorte)
 
   def save(self):
+    #esp = self.id_postgrado
+    #sec = self.seccion
+    #s = CohorteModel.query.filter_by(id_postgrado=esp,seccion=sec).count()
+    #if s > 0:
+      #return "La seccion ya existe"
     db.session.add(self)
     db.session.commit()
     return "cohorte registrado"

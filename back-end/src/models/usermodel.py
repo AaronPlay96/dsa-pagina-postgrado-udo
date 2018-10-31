@@ -52,6 +52,14 @@ class UserModel(db.Model):
         return s
 
     def save(self):
+        ced = self.cedula
+        cor = self.usuario
+        s = UserModel.query.filter_by(cedula=ced).count()
+        p = UserModel.query.filter_by(usuario=cor).count()
+        if s > 0:
+            return "La cedula ya existe"
+        if p > 0:
+            return "El correo ya existe"
         db.session.add(self)
         db.session.commit()
         return "usuario registrado"
@@ -69,8 +77,8 @@ class UserModel(db.Model):
         return s
 
     def serialize(self):
-        return {
-            "cedula": self.cedula,
+        return {            "cedula": self.cedula,
+
             "nombre": self.nombre,
             "apellido": self.apellido,
             "id_tipo":self.id_tipo
