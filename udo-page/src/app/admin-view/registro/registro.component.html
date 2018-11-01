@@ -4,14 +4,14 @@
   
   <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm.form)" class="registro-form">
 
-    <mat-radio-group class="form-group" [(ngModel)]="signup.id_tipo" name="tipo">
-      <mat-radio-button class="Prof" value="2" name="tipo" required > <strong>Profesor</strong></mat-radio-button>
-      <mat-radio-button class="Est" value="1" name="tipo" required > <strong>Estudiante</strong></mat-radio-button>
+    <mat-radio-group class="form-group" [(ngModel)]="signup.id_tipo" name="tipo" required>
+      <mat-radio-button class="Prof" value="2" name="tipo"  > <strong>Profesor</strong></mat-radio-button>
+      <mat-radio-button class="Est" value="1" name="tipo"  > <strong>Estudiante</strong></mat-radio-button>
     </mat-radio-group>
 
     <mat-form-field class="form-group1">
       <mat-label><strong>Correo Electronico</strong></mat-label>
-      <input matInput type="email" class="form-control" [(ngModel)]="signup.usuario" required placeholder="nombre@ejemplo.com" name="uEmail" #email="ngModel"/>
+      <input matInput type="email" class="form-control" [(ngModel)]="signup.usuario" required placeholder="nombre@ejemplo.com" name="uEmail" />
     </mat-form-field>
 
     <mat-form-field class="form-group1">

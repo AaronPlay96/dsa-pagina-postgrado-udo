@@ -53,7 +53,7 @@ export class NotasComponent implements OnInit {
   @ViewChild('stepper') stepper: MatStepper;
   ngOnInit() {
     this.materiasFormGroup = this.formBuilder.group({
-      id_cohorte: ['', Validators.required]
+      id_cohorte: ['', Validators.required ]
     });
     this.estudiantesFormGroup = this.formBuilder.group({
       list: this.formBuilder.array([
@@ -61,6 +61,10 @@ export class NotasComponent implements OnInit {
     });
     this.data_serv.currentMessage.subscribe(message => this.message = message);
     this.idprof.id_profesor = this.message.cedula;
+    this.pedirMaterias();
+    console.log(this.message);
+  }
+  pedirMaterias() {
     this.captura_serv.profesor_obtener(this.idprof).subscribe(
       (data: any) => {
         this.lista = data.list;
@@ -68,7 +72,6 @@ export class NotasComponent implements OnInit {
       },
       (error: any) => { console.log('error ' + error); }
     );
-    console.log(this.message);
   }
   pedirEstudiantes() {
     console.log(this.selected);
@@ -89,7 +92,7 @@ export class NotasComponent implements OnInit {
     return this.formBuilder.group({
         id_estudiante: [id_estudiante, ],
         id_materia: [this.selected.id_materia, ],
-        nota: ['', Validators.required]
+        nota: ['', [Validators.max(10), Validators.min(0)]]
     });
   }
   addMateria() {
@@ -111,6 +114,7 @@ export class NotasComponent implements OnInit {
             console.log(data2);
             // this.respuesta = data.respuesta;
             this.stepper.previous();
+            this.pedirMaterias();
             this.PDF.captureScreen(document.getElementById('toPDF'));
           },
           (error: any) => { console.log('error ' + error); }

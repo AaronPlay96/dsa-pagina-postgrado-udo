@@ -9,6 +9,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
 import {MatTableModule} from '@angular/material/table';
+import {MatSliderModule} from '@angular/material/slider';
 
 
 
@@ -25,7 +26,8 @@ import {MatTableModule} from '@angular/material/table';
     MatStepperModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule
+    MatTableModule,
+    MatSliderModule
   ],
   exports: [
     MatButtonModule,
@@ -38,7 +40,8 @@ import {MatTableModule} from '@angular/material/table';
     MatStepperModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule
+    MatTableModule,
+    MatSliderModule
   ],
   providers: [
   ],

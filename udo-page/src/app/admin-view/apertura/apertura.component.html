@@ -7,9 +7,9 @@
             <form [formGroup]="cohorteFormGroup">
                 <mat-form-field>
                   <mat-label>Seleccione especialidad</mat-label>
-                  <mat-select formControlName="id_postgrado" name="Especialidad" required>
+                  <mat-select formControlName="id_postgrado"  name="Especialidad" required>
                     <mat-option *ngFor="let lp of list_post" [value]="lp.id_postgrado">
-                      {{lp.especialidad}}
+                      <p #post>{{lp.especialidad}}</p>
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -22,7 +22,7 @@
                 </mat-form-field>
                 <mat-form-field>
                   <mat-label>Seccion</mat-label>
-                  <input matInput formControlName="seccion" placeholder="Ingrese la seccion">
+                  <input matInput formControlName="seccion" placeholder="Ingrese la seccion" >
                 </mat-form-field>
                 <div class="next">
                     <button mat-button color="primary" (click)="crearCohorte()">Siguiente</button>
