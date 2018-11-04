@@ -3,6 +3,9 @@ import datetime
 from . import db
 from sqlalchemy import Table, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship, backref
+from src.models import notamodel
+
+dbnota = notamodel.NotaModel
 
 class MateriaModel(db.Model):
   """
@@ -41,6 +44,12 @@ class MateriaModel(db.Model):
   def obtener_materias_by_postgrado(self, id):
       s = db.session.query(self).filter_by(id_postgrado=id).all()
       return s
+
+  def obtener_materias_nota(self,id,idp):
+    a = dbnota.get_full_notas(id)
+    b = db.session.query('id_materia','id_postgrado','nombre','codigo','creditos').select_from(a).all()
+    s = db.session.query(self).filter(id_postgrado=idp).except_(b).all()
+    return s
 
   def serialize(self):
     return {

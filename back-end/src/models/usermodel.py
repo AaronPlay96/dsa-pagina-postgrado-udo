@@ -77,8 +77,8 @@ class UserModel(db.Model):
         return s
 
     def serialize(self):
-        return {            "cedula": self.cedula,
-
+        return {
+            "cedula": self.cedula,
             "nombre": self.nombre,
             "apellido": self.apellido,
             "id_tipo":self.id_tipo

@@ -18,6 +18,7 @@ class NotaModel(db.Model):
   id_estudiante = db.Column(db.Integer, db.ForeignKey('estudiante.id_estudiante'))
   id_materia = db.Column(db.Integer, db.ForeignKey('materia.id_materia'))
   nota = db.Column(db.Integer)
+  fecha_captura = db.Column(db.String(128))
 
   # class constructor
   def __init__(self, data):
@@ -27,6 +28,7 @@ class NotaModel(db.Model):
     self.id_estudiante = data.get('id_estudiante')
     self.id_materia = data.get('id_materia')
     self.nota = data.get('nota')
+    self.fecha_captura = data.get('fecha_captura')
   
   def __repr(self):
     return '<id_nota {}>'.format(self.id_nota)
