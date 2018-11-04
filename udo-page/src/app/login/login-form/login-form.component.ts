@@ -14,6 +14,7 @@ export class LoginFormComponent implements OnInit {
   login = new Loginfo('', '', 0);
   message: string;
   respuesta;
+  fecha: number = Date.now();
   constructor(private router: Router, private loginserv: LoginService, private data_serv: LoginServiceService) { }
   options = [
     { name: 'Estudiante', value: 1 },
@@ -22,6 +23,8 @@ export class LoginFormComponent implements OnInit {
   ];
   selectedOption: string;
   ngOnInit(): void {
+    console.log('fecha ');
+    console.log(this.fecha);
   }
   iniciarSesion(form) {
     this.loginserv.login(this.login).subscribe(

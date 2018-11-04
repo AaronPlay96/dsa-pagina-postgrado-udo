@@ -34,4 +34,11 @@ export class AperturaService {
     const url = 'http://localhost:5000/';
     return this.http.post(url + 'admin/estudiantes', json, httpOptions);
   }
+  // repetido
+  cargarnota(message: any) {
+    const json = JSON.stringify(message);
+    console.log('json ' + json);
+    const url = 'http://localhost:5000/';
+    return this.http.post(url + 'profesor/notas', json, httpOptions);
+  }
 }
