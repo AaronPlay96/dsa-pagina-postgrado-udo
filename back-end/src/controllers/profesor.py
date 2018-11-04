@@ -24,7 +24,8 @@ def registrar_notas():
         var = {
             "id_estudiante": item['id_estudiante'],
             "id_materia": item['id_materia'],
-            "nota": item['nota']
+            "nota": item['nota'],
+            "fecha_captura": item['fecha_captura']
         }
         notamodel.NotaModel.save(notamodel.NotaModel(var))
 

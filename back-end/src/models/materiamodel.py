@@ -50,6 +50,7 @@ class MateriaModel(db.Model):
     s = db.session.query(self).filter(id_postgrado=idp).except_(b).all()
     return s
 
+
   def serialize(self):
     return {
       'id_postgrado': self.id_postgrado,
