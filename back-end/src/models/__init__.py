@@ -10,4 +10,3 @@ bcrypt = Bcrypt()
 
 __all__ = ["typemodel", "studentmodel", "cohortemodel", "materiamodel", "notamodel", "postgradomodel", "controlmodel",
            "usermodel", "db"]
-

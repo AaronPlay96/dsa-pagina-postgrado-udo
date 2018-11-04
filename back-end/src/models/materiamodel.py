@@ -3,8 +3,7 @@ import datetime
 from . import db
 from sqlalchemy import Table, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship, backref
-
-
+import src.models
 
 class MateriaModel(db.Model):
   """
@@ -45,7 +44,7 @@ class MateriaModel(db.Model):
       return s
 
   def obtener_materias_nota(self,id,idp):
-    a = db.notamodel.NotaModel.get_full_notas(id)
+    a = src.models.notamodel.NotaModel.get_full_notas(src.models.notamodel.NotaModel,id)
     b = db.session.query('id_materia','id_postgrado','nombre','codigo','creditos').select_from(a).all()
     s = db.session.query(self).filter(id_postgrado=idp).except_(b).all()
     return s
