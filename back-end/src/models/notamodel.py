@@ -1,5 +1,4 @@
-from . import db
-from src.models import materiamodel, usermodel, studentmodel
+from . import db, materiamodel, usermodel, studentmodel
 
 dbmateria = materiamodel.MateriaModel
 dbuser = usermodel.UserModel
