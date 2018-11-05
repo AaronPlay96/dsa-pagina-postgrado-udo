@@ -38,6 +38,12 @@ class NotaModel(db.Model):
         db.session.commit()
         return "datos registrados"
 
+    def actualizar_nota(self,ide,idm,n):
+        g = db.session.query(self).filter_by(id_estudiante=ide, id_materia=idm).first()
+        db.session.query(self).filter_by(id_nota=g.id_nota).update({"nota": n}, synchronize_session=False)
+        db.session.commit()
+        return "nota actualizada"
+
     def get_full_notas(self, id) -> object:
         a = db.session.query(self, dbmateria, dbstudent). \
             filter(self.id_materia == dbmateria.id_materia). \

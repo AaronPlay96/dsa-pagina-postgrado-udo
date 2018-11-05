@@ -21,10 +21,16 @@ export class EstudianteService {
     return this.http.post(url + 'student/estudiante', json, httpOptions);
   }
   getHistorico(id: any) {
-    const json = JSON.stringify(id);
+    const json = '{"id_estudiante":' + JSON.stringify(id) + '}';
     console.log('id: ' + json);
     const url = 'http://localhost:5000/';
     return this.http.post(url + 'student/notas', json, httpOptions);
+  }
+  getPensum(id: any) {
+    const json = '{"id_estudiante":' + JSON.stringify(id) + '}';
+    console.log('id: ' + json);
+    const url = 'http://localhost:5000/';
+    return this.http.post(url + 'student/materias', json, httpOptions);
   }
 }
 

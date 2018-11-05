@@ -25,13 +25,12 @@
             
             <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
-              <th mat-header-cell *matHeaderCellDef> Calificacion
-              </th>
+              <th mat-header-cell *matHeaderCellDef> Calificacion</th>
             <div formArrayName="list"> 
               <td mat-cell *matCellDef="let row; let i = index" > 
               
                 <div [formGroupName]="i">
-                  <input matInput formControlName="nota" disabled=true min="0" max="10" class="nota" id="nota" type="number" placeholder="Ingrese calificacion" required>
+                  <input matInput formControlName="nota" min="0" max="10" class="nota" id="nota" type="number" placeholder="Ingrese calificacion" required>
                 </div>
               
               </td>

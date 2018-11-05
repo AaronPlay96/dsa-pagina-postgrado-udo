@@ -1,0 +1,16 @@
+table {
+    width: 100%;
+}
+
+.input {
+    width: 30%;
+    vertical-align: 0%;
+}
+
+.cinput {
+    width: 150px;
+}
+
+.btn {
+    margin-left: 5%;
+}

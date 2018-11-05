@@ -92,7 +92,8 @@ export class NotasComponent implements OnInit {
     return this.formBuilder.group({
         id_estudiante: [id_estudiante, ],
         id_materia: [this.selected.id_materia, ],
-        nota: ['', [Validators.max(10), Validators.min(0)]]
+        nota: ['', [Validators.max(10), Validators.min(0)]],
+        fecha_captura: [Date.now(), ]
     });
   }
   addMateria() {

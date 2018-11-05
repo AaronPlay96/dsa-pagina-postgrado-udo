@@ -1,5 +1,6 @@
 from . import db
 from . import usermodel
+import src.models
 
 dbuser = usermodel.UserModel
 
@@ -35,7 +36,7 @@ class StudentModel(db.Model):
   def obtener_id_estudiante(self,id):
       s = db.session.query(self,dbuser).join(dbuser).filter_by(cedula=id).first()
       if s:
-        return {'id_estudiante' : s[0].id_estudiante}
+        return {'id_estudiante' : s[0].id_estudiante,'nombre':s[1].nombre,'apellido':s[1].apellido}
       else:
         return {'respuesta' : 'El estudiante aun no pertenece a un cohorte'}
 
@@ -43,4 +44,8 @@ class StudentModel(db.Model):
       s = db.session.query(self,dbuser).filter_by(id_cohorte=id).join(dbuser).all()
       return s
 
+  def obtener_postgrado_by_student(self, id):
+      s = db.session.query(self, src.models.cohortemodel.CohorteModel). \
+          filter(self.id_cohorte == src.models.cohortemodel.CohorteModel.id_cohorte).filter_by(id_estudiante=id).first()
+      return s
 

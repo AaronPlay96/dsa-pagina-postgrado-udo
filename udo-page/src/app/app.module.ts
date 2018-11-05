@@ -30,7 +30,6 @@ import { AdminViewComponent } from './admin-view/admin-view.component';
 import { HomeComponent } from './profesor-view/home/home.component';
 import { NotasComponent } from './profesor-view/notas/notas.component';
 import { AjustesComponent } from './profesor-view/ajustes/ajustes.component';
-import { HomeComponent_admin } from './admin-view/home/home.component';
 import { RegistroComponent} from './admin-view/registro/registro.component';
 import { AjustesPostComponent } from './admin-view/ajustes-post/ajustes-post.component';
 import { AperturaComponent } from './admin-view/apertura/apertura.component';
@@ -38,6 +37,7 @@ import { CapturaComponent} from './admin-view/captura/captura.component';
 import { ControlComponent } from './admin-view/control/control.component';
 import { HistoricoComponent } from './student-view/historico/historico.component';
 import { PDFcreatorComponent } from './pdfcreator/pdfcreator.component';
+import { EditarNotaComponent } from './admin-view/editar-nota/editar-nota.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent},
@@ -60,13 +60,13 @@ const appRoutes: Routes = [
   },
   { path: 'admin', component: AdminViewComponent,
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full'},
-      { path: 'home', component: HomeComponent_admin },
+      { path: '', redirectTo: 'registro', pathMatch: 'full'},
       { path: 'registro', component: RegistroComponent },
       { path: 'ajustes_post', component: AjustesPostComponent },
       { path: 'apertura', component: AperturaComponent },
       { path: 'control', component: ControlComponent },
-      { path: 'captura', component: CapturaComponent }
+      { path: 'captura', component: CapturaComponent },
+      { path: 'editar', component: EditarNotaComponent }
     ]
   }
 ];
@@ -84,14 +84,14 @@ const appRoutes: Routes = [
     HomeComponent,
     NotasComponent,
     AjustesComponent,
-    HomeComponent_admin,
     RegistroComponent,
     AjustesPostComponent,
     AperturaComponent,
     CapturaComponent,
     ControlComponent,
     HistoricoComponent,
-    PDFcreatorComponent
+    PDFcreatorComponent,
+    EditarNotaComponent
   ],
   imports: [
     HttpModule,

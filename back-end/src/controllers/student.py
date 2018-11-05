@@ -31,7 +31,8 @@ def obtener_notas():
 def obtener_materias():
     if not request.is_json:
         return jsonify({"msg": "Missing JSON in request"})
-    materia = dbmateria.obtener_materias_nota(dbmateria,request.json['id_estudiante'],request.json['id_postgrado'])
+    post = dbstudent.obtener_postgrado_by_student(dbstudent,request.json['id_estudiante'])
+    materia = dbmateria.obtener_materias_nota(dbmateria,request.json['id_estudiante'],post[1].id_postgrado)
     return jsonify(list=[{
                             "id_materia": a.id_materia,
                             "nota" : 'SC',

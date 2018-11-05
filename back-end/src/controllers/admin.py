@@ -190,3 +190,19 @@ def obtener_profesores():
         return jsonify({"msg": "Missing JSON in request"}),
     prof = dbuser.get_profesores(dbuser)
     return jsonify(list=[dbuser.serialize() for dbuser in prof]), 200
+
+@admin_api.route('/notas_modificar', methods=['POST','OPTIONS'])
+@crossdomain(origin=config.Development.CORS_ORIGIN_WHITELIST, methods=['POST'],headers=['Content-Type'])
+def modificar_notas():
+    if not request.is_json:
+        return jsonify({"msg": "Missing JSON in request"}),
+
+    var = {
+        "id_estudiante": request.json['id_estudiante'],
+        "id_materia": request.json['id_materia'],
+        "nota": request.json['nota'],
+        "fecha_captura": request.json['fecha_captura']
+    }
+    notamodel.NotaModel.actualizar_nota(notamodel.NotaModel,request.json['id_estudiante'],request.json['id_materia'],request.json['nota'])
+
+    return jsonify({"respuesta": 'Nota actualizada'}), 200
