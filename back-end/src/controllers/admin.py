@@ -4,6 +4,7 @@ from src.serializers import control
 import json
 from src.crossdomain import crossdomain
 from src import config
+import flask
 
 
 dbuser = usermodel.UserModel
@@ -47,6 +48,8 @@ def cohorte():
     cohor = cohortemodel.CohorteModel(request.get_json())
     c_response = cohortemodel.CohorteModel.save(cohor)
     c_last = cohortemodel.CohorteModel.obtener_ultimo(cohor)
+    if c_response == "seccion existente":
+        return flask.redirect('/404')
     return jsonify({"id_ultimo": c_last, "respuesta": c_response}), 200
 
 

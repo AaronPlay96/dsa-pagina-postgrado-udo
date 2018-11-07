@@ -4,6 +4,7 @@ import src.models
 
 dbuser = usermodel.UserModel
 
+
 class StudentModel(db.Model):
   """
   Student Model
@@ -29,6 +30,14 @@ class StudentModel(db.Model):
     return '<id_estudiante {}>'.format(self.id_estudiante)
 
   def save(self):
+    g = StudentModel.query.filter_by(cedula=self.cedula).count()
+    f = StudentModel.query.filter_by(cedula=self.cedula).first()
+    if g > 0:
+        s = StudentModel.obtener_postgrado_by_student(StudentModel,f.id_estudiante)
+        if s:
+            n = src.models.cohortemodel.CohorteModel.obtener_postgrado(src.models.cohortemodel.CohorteModel,self.id_cohorte)
+            if s[1].id_postgrado == n.id_postgrado:
+                return "el estudiante ya cursa este postgrado"
     db.session.add(self)
     db.session.commit()
     return "datos registrados"

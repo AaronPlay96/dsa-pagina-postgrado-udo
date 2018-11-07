@@ -1,5 +1,6 @@
 from . import db
 from src.models import postgradomodel
+import flask
 
 dbpostgrado = postgradomodel.PostgradoModel
 
@@ -31,11 +32,11 @@ class CohorteModel(db.Model):
     return '<id_cohorte {}>'.format(self.id_cohorte)
 
   def save(self):
-    #esp = self.id_postgrado
-    #sec = self.seccion
-    #s = CohorteModel.query.filter_by(id_postgrado=esp,seccion=sec).count()
-    #if s > 0:
-      #return "La seccion ya existe"
+    esp = self.id_postgrado
+    sec = self.seccion
+    s = CohorteModel.query.filter_by(id_postgrado=esp,seccion=sec).count()
+    if s > 0:
+      return "seccion existente"
     db.session.add(self)
     db.session.commit()
     return "cohorte registrado"
@@ -50,3 +51,7 @@ class CohorteModel(db.Model):
           return s
       else:
           return 'no hay cohortes registrados'
+
+  def obtener_postgrado(self,id):
+    s = db.session.query(self).filter_by(id_cohorte=id).first()
+    return s
